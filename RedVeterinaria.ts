@@ -2,6 +2,13 @@ import { cliente } from "./Cliente";
 import {Paciente} from "./Paciente";
 import { Proveedores } from "./Proveedores";
 
+/*Nuestro cliente es una red de veterinarias y desea poder acceder a la siguiente información:
+ ● Sucursales de Veterinarias ● Clientes ● Pacientes (mascotas) ● Proveedores  */
+
+ /* Proveedores:
+ la red debe contar con la opción de alta, baja y modificación de los mismos. */
+
+
 export  class redVeterinaria {
     // protected id: number;
     // protected nombre: string;

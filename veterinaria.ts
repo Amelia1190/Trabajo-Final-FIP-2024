@@ -1,9 +1,20 @@
- import { redVeterinaria } from "./redVeterinaria";
 import {generarId} from "./generadorId"
 import { Proveedor } from "./Proveedores";
 import { Cliente } from "./Cliente";
 import { Paciente } from "./Paciente";
 
+
+/*Veterinarias: nombre, dirección, id (un número generado aleatoriamente al momento del alta) 
+La red debe tener la posibilidad de dar de alta, modificar datos o dar de baja las mismas.  */
+
+/*Pacientes (mascotas): las veterinarias deben contar con la opción de alta, baja y modificación de los mismos. */
+
+  
+/*Clientes: las veterinarias deben contar con la opción de alta, 
+baja y modificación de los mismos. */
+
+
+//clase Veterinaria
  
 export class Veterinaria {
     protected id: number;
@@ -24,7 +35,7 @@ export class Veterinaria {
         this.telefono = telefono;
     }
 
-   
+   //proveedores van en redveterinaria
     // Métodos provedor
     agregarProveedor(nombre:string, telefono: number): void {
         let nuevoProveedor = new Proveedor("nombre", 545454 );

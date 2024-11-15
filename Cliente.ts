@@ -1,6 +1,6 @@
 import { Veterinaria } from "./Veterinaria";
 
-export class cliente {
+export class Cliente {
     id: number;
     
 }
