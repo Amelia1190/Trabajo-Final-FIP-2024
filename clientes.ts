@@ -5,3 +5,19 @@
 // (generado  igual  que  los  anteriores),  las 
 // veterinarias deben contar con la opción de alta, baja
 // y modificación de los mismos.
+
+export class Cliente {
+    nombre: string;
+    telefono: string;
+    vip: boolean;
+    id: number;
+    visitas: number;
+
+    constructor(nombre:string, telefono:string, vip:boolean, id:number){
+        this.nombre=nombre;
+        this.telefono=telefono;
+        this.vip=vip;
+        this.id=id;
+        this.visitas=0;
+    }
+}
