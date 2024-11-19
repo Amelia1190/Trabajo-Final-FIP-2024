@@ -52,3 +52,101 @@ Si ya existe se debe volver a generar.*/
   }
 
   }
+
+//--------------------------------------- PROVEEDORES
+
+
+//Función para Alta  Proveedor
+
+export function altaProveedor(arrProveedor: Proveedor[]){
+    let nombre: string = readlineSync.question("Ingrese Apellido y Nombre del proveedor: ");
+    let telefono: number = readlineSync.questionInt("Ingrese el n° de telefono del proveedor: ");
+      
+    let id: number = crearId(20000);
+    while(existeId(arrProveedor,id)==true){
+      id=crearId(20000);
+    }
+  
+    let nProveedor: Proveedor = new Proveedor(nombre, telefono, id);
+    arrProveedor.push(nProveedor);
+    console.log(arrProveedor);
+  }
+  
+  
+  //Función para modificar datos de Proveedor
+  export function modificarProveedor(arregloProveedores: Proveedor[], posicion: number){
+    let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
+    let telefono: number = readlineSync.questionInt("Ingrese el numero nuevo: ");
+    let id: number = arregloProveedores[posicion].getId()
+    
+    let proveedorMod: Proveedor = new Proveedor(nombre, telefono, id)
+    delete arregloProveedores[posicion]
+    arregloProveedores[posicion] = proveedorMod;
+    console.log(arregloProveedores)
+  }
+  
+  //Función para dar de baja Proveedor 
+  
+  export function bajaProveedor(proveedor: Proveedor[]){ 
+    let bajaId:number=readlineSync.questionInt("Ingrese Id a dar de baja: ")
+    for (let i= 0; i< proveedor.length; i++){
+      if (bajaId === proveedor[i].getId()){
+        proveedor.splice(i,1)
+        console.log("Se dio de baja el Proveedor con id ingresado")
+      }
+    }
+    console.log(proveedor)
+  }
+  
+  //----------------------------------------sucursales de Veterinarias
+  
+  
+  
+  //alta Veterinaria
+  
+  export function altaVeterinaria(arrVeterinaria: Veterinaria[], arrClientes: Cliente[], arrPacientes: Paciente[]){
+      let nombre : string = readlineSync.question("Ingrese el nombre de la veterinaria: ");
+      let direccion: string = readlineSync.question("ingrese dirección: ")
+      let id: number = crearId(20000);
+      
+    while(existeId(arrVeterinaria,id)==true){
+      id=crearId(20000);
+    }
+      
+      let listaClientes: Cliente[] = arrClientes;
+      let listaGeneralPacientes: Paciente[]= arrPacientes;
+  
+    let nuevaVeterinaria: Veterinaria = new Veterinaria(nombre, direccion, id, listaClientes, listaGeneralPacientes);
+    arrVeterinaria.push(nuevaVeterinaria)
+      console.log(arrVeterinaria)
+  
+  }
+  
+  //Modificar veterinaria
+  
+  export function modificarVeterinaria(arrVeterinarias: Veterinaria[], posicion: number, arrClientes: Array<Cliente>, arrPacientes: Array<Paciente>){
+      let nombre : string = readlineSync.question("Ingrese el nombre nuevo: ");
+      let direccion: string = readlineSync.question("ingrese nueva dirección: ");
+  
+    let id: number = arrVeterinarias[posicion].getId()    
+  
+      let veterinariaModificada : Veterinaria = new Veterinaria (nombre, direccion, id, arrClientes, arrPacientes);
+      arrVeterinarias[posicion] = veterinariaModificada;
+      console.log(arrVeterinarias)
+  
+  }
+  
+  
+  //Funcion baja Veterinaria  
+  
+  export function bajaVeterinaria(arrVeterinarias:Veterinaria[], id: number):void{
+  
+    for (let i= 0; i< arrVeterinarias.length; i++){
+      if (id === arrVeterinarias[i].getId()){
+        arrVeterinarias.splice(i,1)
+      }
+    }
+    console.log(arrVeterinarias)
+  }
+  
+  
