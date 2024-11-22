@@ -124,29 +124,29 @@ export function altaProveedor(arrProveedor: Proveedor[]){
   
   //Modificar veterinaria
   
-  export function modificarVeterinaria(arrVeterinarias: Veterinaria[], posicion: number, arrClientes: Array<Cliente>, arrPacientes: Array<Paciente>){
+  export function modificarVeterinaria(arregloVete: Veterinaria[], posicion: number, arrClientes: Array<Cliente>, arrPacientes: Array<Paciente>){
       let nombre : string = readlineSync.question("Ingrese el nombre nuevo: ");
       let direccion: string = readlineSync.question("ingrese nueva dirección: ");
   
-    let id: number = arrVeterinarias[posicion].getId()    
+    let id: number = arregloVete[posicion].getId()    
   
       let veterinariaModificada : Veterinaria = new Veterinaria (nombre, direccion, id, arrClientes, arrPacientes);
-      arrVeterinarias[posicion] = veterinariaModificada;
-      console.log(arrVeterinarias)
+      arregloVete[posicion] = veterinariaModificada;
+      console.log(arregloVete)
   
   }
   
   
   //Funcion baja Veterinaria  
   
-  export function bajaVeterinaria(arrVeterinarias:Veterinaria[], id: number):void{
+  export function bajaVeterinaria(arregloVete:Veterinaria[], id: number):void{
   
-    for (let i= 0; i< arrVeterinarias.length; i++){
-      if (id === arrVeterinarias[i].getId()){
-        arrVeterinarias.splice(i,1)
+    for (let i= 0; i< arregloVete.length; i++){
+      if (id === arregloVete[i].getId()){
+        arregloVete.splice(i,1)
       }
     }
-    console.log(arrVeterinarias)
+    console.log(arregloVete)
   }
   
   
