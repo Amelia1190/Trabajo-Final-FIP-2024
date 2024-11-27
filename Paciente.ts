@@ -10,7 +10,6 @@
     private nombre: string;
     private especie: string;
     private idDueño: number; 
-     id: number;
 
     //constructor
 
