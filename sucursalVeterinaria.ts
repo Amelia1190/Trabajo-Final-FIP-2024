@@ -1,7 +1,7 @@
-import { Cliente } from "./cliente";
-import { Paciente } from "./paciente";
+import { Cliente } from "./Cliente";
+import { Paciente } from "./Paciente";
 import { Proveedor } from "./Provedor";
-import { Proveedores } from "./proveedor";
+
 
 import * as readlineSync from 'readline-sync';
 
@@ -16,11 +16,19 @@ baja y modificación de los mismos. */
 
 
 export class Veterinaria {
+    altaPaciente(paciente1: Paciente) {
+        throw new Error("Method not implemented.");
+    }
+    bajaPaciente(arg0: number) {
+        throw new Error("Method not implemented.");
+    }
     private nombre: string;
     private direccion: string; 
     private id: number;
     private listaClientes: Cliente [];
     private listaPacientes:Paciente [];
+    agregarCliente: any;
+    eliminarCliente: any;
    
   
     public constructor (nombre: string, direccion: string, id:number,listaClientes: Cliente [],listaPacientes:Paciente []){
@@ -173,78 +181,78 @@ export function modificarTelefonoCliente(arrCliente: Cliente[]){
 //---------------------------FUNCION PARA PACIENTE-----------------------
 
 
-// //Funcion para crear nuevo paciente
-// export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
-//   let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
-//   let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
-//   let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente: ");
+//Funcion para crear nuevo paciente
+export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
+  let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
+  let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
+  let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente: ");
 
-//   let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+  let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
   
-//   if(ubicacionId!= -1){
-//     let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
-//     arrPacientes.push(nuevoPaciente);
-//     arrCliente[ubicacionId].getListaMascota().push(nuevoPaciente);
-//   }else{
-//     console.log("No se encontro Id ingresado")
-//   }
-//   return arrPacientes
-// }
+  if(ubicacionId!= -1){
+    let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
+    arrPacientes.push(nuevoPaciente);
+    arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+  }else{
+    console.log("No se encontro Id ingresado")
+  }
+  return arrPacientes
+}
 
-// //Funcion eliminar paciente
+//Funcion eliminar paciente
 
-// export function bajaPaciente(arrCliente:Cliente[],arrPacientes:Paciente[]):void {
-//   let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para dar de baja el paciente: ");
-//   let ubicacionId=buscarPorId(arrCliente,idCliente);
+export function bajaPaciente(arrCliente:Cliente[],arrPacientes:Paciente[]):void {
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para dar de baja el paciente: ");
+  let ubicacionId=buscarPorId(arrCliente,idCliente);
  
   
-//   if(ubicacionId!=-1){
-//     console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascota())
-//     let borrarPaciente=readlineSync.question("Ingrese el nombre del paciente a dar de baja: ")
-//     let eliminar:boolean=false;
-//     let i:number=0;
+  if(ubicacionId!=-1){
+    console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascota())
+    let borrarPaciente=readlineSync.question("Ingrese el nombre del paciente a dar de baja: ")
+    let eliminar:boolean=false;
+    let i:number=0;
 
-//     while((eliminar==false) && (i<arrCliente[ubicacionId].getListaMascota().length)){
-//       if(borrarPaciente == arrCliente[ubicacionId].getListaMascota()[i].getNombre()){
-//         eliminar=true;
-//         arrCliente[ubicacionId].getListaMascota().splice(i,1)
-//       }else{
-//         i=i+1
-//       }
-//     }
+    while((eliminar==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
+      if(borrarPaciente == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
+        eliminar=true;
+        arrCliente[ubicacionId].getListaMascotas().splice(i,1)
+      }else{
+        i=i+1
+      }
+    }
 
-//   }
+  }
   
   
-// }
+}
 
-// //funcion para modificar Paciente
+//funcion para modificar Paciente
 
-// export function modificarPaciente(arrCliente:Cliente[]):void {
-//   let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para Modificar el paciente: ");
-//   let ubicacionId=buscarPorId(arrCliente,idCliente);
+export function modificarPaciente(arrCliente: Cliente[]):void {
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para Modificar el paciente: ");
+  let ubicacionId=buscarPorId(arrCliente,idCliente);
  
   
-//   if(ubicacionId!=-1){
-//     console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascota()) 
-//     let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a Modificar: ")
-//     let ok:boolean=false;
-//     let i:number=0;
+  if(ubicacionId!=-1){
+    console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascotas()) 
+    let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a Modificar: ")
+    let ok:boolean=false;
+    let i:number=0;
 
-//     while((ok==false) && (i<arrCliente[ubicacionId].getListaMascota().length)){
-//       if(pacienteModificar == arrCliente[ubicacionId].getListaMascota()[i].getNombre()){
-//         ok=true;
-//         let nuevoNombre=readlineSync.question("Ingrese el nuevo nombre del paciente: ")
-//         let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
-//         arrCliente[ubicacionId].getListaMascota()[i].setNombre(nuevoNombre);
-//         arrCliente[ubicacionId].getListaMascota()[i].setEspecie(nuevaEspecie);
-//         console.log("El paciente se modifico exitosamente")
-//       }else{
-//         i=i+1
-//       }
-//     }
-//   }else{
-//     console.log("El Id del cliente Ingresado no se encontro")
-//   }
+    while((ok==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
+      if(pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
+        ok=true;
+        let nuevoNombre=readlineSync.question("Ingrese el nuevo nombre del paciente: ")
+        let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
+        arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
+        arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);
+        console.log("El paciente se modifico exitosamente")
+      }else{
+        i=i+1
+      }
+    }
+  }else{
+    console.log("El Id del cliente Ingresado no se encontro")
+  }
   
-// }
+}
