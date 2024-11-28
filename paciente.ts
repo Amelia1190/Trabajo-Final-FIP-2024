@@ -57,21 +57,4 @@
         return ok
     }
 
-    public datosAnimal(): string {
-        return `paciente: Nombre: ${this.nombre}, Especie: ${this.especie}, Dueño: ${this.idDueño}`;
-      }
-
-      //modificar paciente
-    
-      public modificarPaciente(  nombreNuevo: string, especieNuevo: string): void {
-        let pacienteAModificar: Paciente| undefined;//me lo agrega
-       
-        if (pacienteAModificar) {
-            pacienteAModificar.nombre = nombreNuevo;
-            pacienteAModificar.especie = especieNuevo;
-          console.log(`Paciente modificado: ${pacienteAModificar.datosAnimal()}`);
-        } else {
-          console.log(" El paciente no está registrado");
-        }
-      }
 }

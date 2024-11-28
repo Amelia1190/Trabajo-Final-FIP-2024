@@ -16,7 +16,6 @@
         this.nombre = nombre;
         this.telefono = telefono;
        this.id = id; 
-       //this.id =Math.floor(Math.random() * 15000) + 1;
 
     }
 

@@ -16,19 +16,13 @@ baja y modificación de los mismos. */
 
 
 export class Veterinaria {
-    altaPaciente(paciente1: Paciente) {
-        throw new Error("Method not implemented.");
-    }
-    bajaPaciente(arg0: number) {
-        throw new Error("Method not implemented.");
-    }
     private nombre: string;
     private direccion: string; 
     private id: number;
     private listaClientes: Cliente [];
     private listaPacientes:Paciente [];
-    agregarCliente: any;
-    eliminarCliente: any;
+    
+    
    
   
     public constructor (nombre: string, direccion: string, id:number,listaClientes: Cliente [],listaPacientes:Paciente []){
@@ -80,7 +74,7 @@ export class Veterinaria {
   
     
 
-// Crear numero random .
+// Crear numero para ID .
 
 export function crearNumRandom(max: number){
   return Math.floor(Math.random() * max)
@@ -137,7 +131,7 @@ export function altaCliente(arrCliente: Cliente[]){
   return ubicacion
 }
 
-//Funcion para borrar un cliente
+//Funcion para baja cliente
 
 export function bajaCliente(arrClientes:Cliente[]):void{
   let borrarId:number=readlineSync.questionInt("Ingrese el id del cliente a dar de baja: ");
@@ -244,6 +238,7 @@ export function modificarPaciente(arrCliente: Cliente[]):void {
         ok=true;
         let nuevoNombre=readlineSync.question("Ingrese el nuevo nombre del paciente: ")
         let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
+        
         arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
         arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);
         console.log("El paciente se modifico exitosamente")
