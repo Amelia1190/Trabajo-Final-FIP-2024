@@ -69,22 +69,20 @@ export class Veterinaria {
         this.listaPacientes = listaPacientes;
     }
 
- }
-
+   
+}
   
     
 
-// Crear numero para ID .
+//  ---Crear numero para ID .
 
-export function crearNumRandom(max: number){
+export function crearId(max: number){
   return Math.floor(Math.random() * max)
 }
 
 
-// -----------------FUNCION PARA CLIENTES------------------
-
-//funcion para verificar si id existe
-export function existeId(arreglo:Cliente[]|Proveedor[]|Veterinaria[],id:number):boolean{
+//  --- Y para verificar si id existe
+export function existeId(arreglo:Veterinaria[]|Cliente[]|Proveedor[],id:number):boolean{
   let existe:boolean= false;
   let i:number=0;
   while((existe==false)&&(i<arreglo.length)){
@@ -96,25 +94,27 @@ export function existeId(arreglo:Cliente[]|Proveedor[]|Veterinaria[],id:number):
   return existe
  }
 
+/*Clientes*/
 
-//-----------Funcion para crear cliente nuevo--------
 
-export function altaCliente(arrCliente: Cliente[]){
-  let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
-  let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
+//--- Alta cliente 
+
+export function altaCliente(listaClientes: Cliente[]){
+  let nombre: string = readlineSync.question("Ingrese Apellido y Nombre del cliente: ");
+  let telefono: number = readlineSync.questionInt("Ingrese el n° de telefono del cliente: ");
     
-  let id: number = crearNumRandom(1000);
+  let id: number = crearId(25000);
 
-  while(existeId(arrCliente,id)==true){
-    id=crearNumRandom(1000);
+  while(existeId(listaClientes,id)==true){
+    id=crearId(25000);
   }
     
   let nuevoCliente : Cliente = new Cliente(nombre, telefono, id );
-  arrCliente.push(nuevoCliente)
+  listaClientes.push(nuevoCliente)
   
-  return arrCliente
+  return listaClientes
 }
- //Funcion buscar por id a un cliente/ proveedor
+ //--- buscar por id a un cliente/ proveedor
  
  export function buscarPorId(arreglo:Cliente[]|Proveedor[],id:number){
   let ubicacion:number=-1;
@@ -131,51 +131,46 @@ export function altaCliente(arrCliente: Cliente[]){
   return ubicacion
 }
 
-//Funcion para baja cliente
+// --- baja cliente
 
 export function bajaCliente(arrClientes:Cliente[]):void{
-  let borrarId:number=readlineSync.questionInt("Ingrese el id del cliente a dar de baja: ");
-  let ubicacion:number=buscarPorId(arrClientes,borrarId);
+  let bajaId:number=readlineSync.questionInt("Ingrese el id del cliente que busca dar de  baja: ");
+  let ubicacion:number=buscarPorId(arrClientes,bajaId);
   if(ubicacion!= -1){
     arrClientes.splice(ubicacion,1);
-    console.log("Se elimino cliente correctamente");
+    console.log("El cliente ingresado se dio de baja");
   }else{
-    console.log("No se encontro id ingresado")
+    console.log("No se encontro id en el sistema")
   }
 
 }
 
-//Funciones para modificar datos de cliente (numero telefonico y nombre)
-export function modificarNombreCliente(arrCliente:Cliente[]){
-  
-  let idCliente:number=readlineSync.questionInt("Ingrese id del cliente a modificar el nombre: ");
-  
-  let ubicacionId:number=buscarPorId(arrCliente,idCliente);
-  if(ubicacionId!=-1){
-    let nuevoNombre:string=readlineSync.question("Ingrese el nuevo nombre: ");
-    arrCliente[ubicacionId].setNombre(nuevoNombre)
-    console.log("Se modifico exitosamente el nombre:  " + arrCliente[ubicacionId].getNombre())
-  }else{
-    console.log("No se encontro id ingresado")
+//--- modificar  cliente (numero y nombre)
+
+export function modificarCliente(arrCliente: Cliente[], datoAmodificar: string) {
+  const idCliente = readlineSync.questionInt("Ingrese id del cliente a modificar: ");
+  const ubicacionId = buscarPorId(arrCliente, idCliente);
+
+  if (ubicacionId !== -1) {
+    let nuevaInfo: string | number;
+
+    if (datoAmodificar === "nombre") {
+      nuevaInfo = readlineSync.question("Ingrese el nuevo nombre: ");
+      arrCliente[ubicacionId].setNombre(nuevaInfo);
+    } else if (datoAmodificar === "telefono") {
+      nuevaInfo = readlineSync.questionInt("Ingrese nuevo n° telefonico: ");
+      arrCliente[ubicacionId].setTelefono(nuevaInfo);
+    }
+
+    console.log(`Se modificó exitosamente el ${datoAmodificar}: ${arrCliente[ubicacionId].getNombre() || arrCliente[ubicacionId].getTelefono()}`);
+  } else {
+    console.log("No se encontro id ingresado");
   }
 }
-
-export function modificarTelefonoCliente(arrCliente: Cliente[]){
-  let idCliente:number=readlineSync.questionInt("Ingrese Id del cliente a modificar el numero telefonico: ");
-  let ubicacionId=buscarPorId(arrCliente,idCliente);
-  if(ubicacionId!=-1){
-    let nuevoTelefono:number=readlineSync.questionInt("Ingrese nuevo numero telefonico: ");
-    arrCliente[ubicacionId].setTelefono(nuevoTelefono);
-    console.log("Se modifico exitosamente el numero telefonico: " + arrCliente[ubicacionId].getTelefono());
-  }else {
-    console.log("No se encontro id ingresado")
-  }
-}
-
-//---------------------------FUNCION PARA PACIENTE-----------------------
+/* Pacientes*/
 
 
-//Funcion para crear nuevo paciente
+//--- Alta  paciente
 export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
   let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
   let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
@@ -193,22 +188,22 @@ export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
   return arrPacientes
 }
 
-//Funcion eliminar paciente
+//--- baja paciente
 
-export function bajaPaciente(arrCliente:Cliente[],arrPacientes:Paciente[]):void {
+export function bajaPaciente(arrCliente:Cliente[]):void {
   let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para dar de baja el paciente: ");
   let ubicacionId=buscarPorId(arrCliente,idCliente);
  
   
   if(ubicacionId!=-1){
     console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascotas())
-    let borrarPaciente=readlineSync.question("Ingrese el nombre del paciente a dar de baja: ")
-    let eliminar:boolean=false;
+    let bajaDePaciente=readlineSync.question("Ingrese el nombre del paciente a dar de baja: ")
+    let baja:boolean=false;
     let i:number=0;
 
-    while((eliminar==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
-      if(borrarPaciente == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
-        eliminar=true;
+    while((baja==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
+      if(bajaDePaciente == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
+        baja=true;
         arrCliente[ubicacionId].getListaMascotas().splice(i,1)
       }else{
         i=i+1
@@ -220,28 +215,28 @@ export function bajaPaciente(arrCliente:Cliente[],arrPacientes:Paciente[]):void 
   
 }
 
-//funcion para modificar Paciente
+//--- modificar Paciente
 
 export function modificarPaciente(arrCliente: Cliente[]):void {
-  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para Modificar el paciente: ");
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para modificar el paciente: ");
   let ubicacionId=buscarPorId(arrCliente,idCliente);
  
   
   if(ubicacionId!=-1){
     console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascotas()) 
-    let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a Modificar: ")
+    let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a modificar: ")
     let ok:boolean=false;
     let i:number=0;
 
     while((ok==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
       if(pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
         ok=true;
-        let nuevoNombre=readlineSync.question("Ingrese el nuevo nombre del paciente: ")
+        let nuevoNombre=readlineSync.question("Ingrese el nuevo Nombre del paciente: ")
         let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
         
         arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
         arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);
-        console.log("El paciente se modifico exitosamente")
+        console.log("El paciente se modificó exitosamente")
       }else{
         i=i+1
       }

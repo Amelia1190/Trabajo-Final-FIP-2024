@@ -9,7 +9,7 @@
     private nombre: string;
     private telefono: number;
     private id:number;
-    //public id:  number=Math.floor(Math.random() * 15000) + 1;
+   
 
     //constructor
     public constructor (nombre:string, telefono: number,id:number){

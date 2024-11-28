@@ -2,8 +2,8 @@ import { Cliente } from "./Cliente";
 import { Paciente } from "./paciente";
 import { Proveedor } from "./proveedor";
 import { Veterinaria } from "./sucursalVeterinaria";
-import { existeId, crearNumRandom} from "./sucursalVeterinaria";
-import * as readlineSync from 'readline-sync';
+import { existeId, crearId} from "./sucursalVeterinaria";
+import * as rls from 'readline-sync';
 
 /*Nuestro cliente es una red de veterinarias y desea poder acceder a la siguiente información:
 Sucursales de Veterinarias, Clientes,Pacientes (mascotas) yProveedores 
@@ -52,19 +52,18 @@ Si ya existe se debe volver a generar.*/
   }
 
   }
+  /*PROVEEDORES*/
 
-//--------------------------------------- PROVEEDORES
 
-
-//Función para Alta  Proveedor
+//---Alta  Proveedor
 
 export function altaProveedor(arrProveedor: Proveedor[]){
-    let nombre: string = readlineSync.question("Ingrese Apellido y Nombre del proveedor: ");
-    let telefono: number = readlineSync.questionInt("Ingrese el n° de telefono del proveedor: ");
+    let nombre: string = rls.question("Ingrese Apellido y Nombre del proveedor: ");
+    let telefono: number = rls.questionInt("Ingrese el n° de telefono del proveedor: ");
       
-    let id: number = crearNumRandom(20000);
+    let id: number = crearId(3500);
     while(existeId(arrProveedor,id)==true){
-      id=crearNumRandom(20000);
+      id=crearId(3500);
     }
   
     let nProveedor: Proveedor = new Proveedor(nombre, telefono, id);
@@ -72,61 +71,81 @@ export function altaProveedor(arrProveedor: Proveedor[]){
     console.log(arrProveedor);
   }
   
+  // --- Modificar datos de Proveedor
+export function modificarProveedor(arregloProveedores: Proveedor[]) {
   
-  //Función para modificar datos de Proveedor
-  export function modificarProveedor(arregloProveedores: Proveedor[], posicion: number){
-    let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
-    let telefono: number = readlineSync.questionInt("Ingrese el numero nuevo: ");
-    let id: number = arregloProveedores[posicion].getId()
-    
-    let proveedorMod: Proveedor = new Proveedor(nombre, telefono, id)
-    delete arregloProveedores[posicion]
+  const idProveedor = rls.questionInt("Ingrese el ID del proveedor que desea modificar: ");
+
+  // Buscar el proveedor en el arreglo
+  const posicion = arregloProveedores.findIndex((proveedor) => proveedor.getId() === idProveedor);
+
+  if (posicion !== -1) {
+    console.log("Ingrese los nuevos datos del proveedor:");
+    const nombre = rls.question("Ingrese el nombre modificado: ");
+    const telefono = rls.questionInt("Ingrese el nuevo teléfono: ");
+
+    // Modificar el proveedor
+    const proveedorMod = new Proveedor(nombre, telefono, idProveedor);
     arregloProveedores[posicion] = proveedorMod;
-    console.log(arregloProveedores)
+
+    console.log("Proveedor modificado con éxito.");
+  } else {
+    console.log("Proveedor no encontrado.");
   }
-  
-  //Función para dar de baja Proveedor 
+}
+ 
+  //--- baja Proveedor 
   
   export function bajaProveedor(proveedor: Proveedor[]){ 
-    let bajaId:number=readlineSync.questionInt("Ingrese Id a dar de baja: ")
+    let bajaId:number=rls.questionInt("Ingrese Id a dar de baja: ")
     for (let i= 0; i< proveedor.length; i++){
       if (bajaId === proveedor[i].getId()){
         proveedor.splice(i,1)
-        console.log("Se dio de baja el Proveedor con id ingresado")
+        console.log("Se dio de baja el Proveedor")
       }
     }
     console.log(proveedor)
   }
   
-  //----------------------------------------sucursales de Veterinarias
-  
-  
-  
-  //alta Veterinaria
-  
-  export function altaVeterinaria(arrVeterinaria: Veterinaria[], arrClientes: Cliente[], arrPacientes: Paciente[]){
-      let nombre : string = readlineSync.question("Ingrese el nombre de la veterinaria: ");
-      let direccion: string = readlineSync.question("ingrese dirección: ")
-      let id: number = crearNumRandom(20000);
+  /*sucursales de Veterinarias*/
       
-    while(existeId(arrVeterinaria,id)==true){
-      id=crearNumRandom(20000);
-    }
-      
-      let listaClientes: Cliente[] = arrClientes;
-      let listaGeneralPacientes: Paciente[]= arrPacientes;
-  
-    let nuevaVeterinaria: Veterinaria = new Veterinaria(nombre, direccion, id, listaClientes, listaGeneralPacientes);
-    arrVeterinaria.push(nuevaVeterinaria)
-      console.log(arrVeterinaria)
-  
+    
+//---alta Veterinaria
+export function altaVeterinaria(arregloVeterinarias: Veterinaria[],listaClientes: Cliente[],listaGeneralMascotas: Paciente[]){
+  console.log("Ingrese los datos de la nueva sucursal:");
+  let nombre :string = rls.question("Ingrese el nombre de la sucursal: ");
+  let direccion = rls.question("Ingrese la dirección de la sucursal: ");
+  let id: number = crearId(3500);
+
+  while(existeId(arregloVeterinarias,id)==true){
+    id=crearId(3500);
   }
+
+  // Crear una nueva sucursal
+  const nuevaSucursal = new Veterinaria(nombre,direccion,id,listaClientes,listaGeneralMascotas);
+
+  // Agregar la nueva sucursal al arreglo
+  arregloVeterinarias.push(nuevaSucursal);
+
+  console.log("Sucursal agregada con éxito.");
+//me muestra las sucursales
+  console.log("Lista de sucursales:");
+  arregloVeterinarias.forEach((sucursal, index) => {
+    console.log(`Sucursal ${index + 1}:`);
+    console.log(`Nombre: ${sucursal.getNombre()}`);
+    console.log(`Dirección: ${sucursal.getDireccion()}`);
+    console.log(`ID: ${sucursal.getId()}`);
+    console.log("------------------------");
+  });
+}
+
+
   
   //Modificar veterinaria
   
-  export function modificarVeterinaria(arregloVete: Veterinaria[], posicion: number, arrClientes: Array<Cliente>, arrPacientes: Array<Paciente>){
-      let nombre : string = readlineSync.question("Ingrese el nombre nuevo: ");
-      let direccion: string = readlineSync.question("ingrese nueva dirección: ");
+  export function modificarVeterinaria(arregloVete: Veterinaria[], posicion: number, arrClientes: Cliente[], arrPacientes:Paciente[]){
+      let nombre : string = rls.question("Ingrese el cambio de nombre:");
+      let direccion: string = rls.question("ingrese nueva dirección: ");
   
     let id: number = arregloVete[posicion].getId()    
   
@@ -137,7 +156,8 @@ export function altaProveedor(arrProveedor: Proveedor[]){
   }
   
   
-  //Funcion baja Veterinaria  
+  
+  //--- baja Veterinaria  por Id
   
   export function bajaVeterinaria(arregloVete:Veterinaria[], id: number):void{
   
