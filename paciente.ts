@@ -1,5 +1,6 @@
 
 
+
   /*Pacientes (mascotas): nombre, especie (si no es perro o gato, deberá registrarse como exótica), 
   id del dueño, las veterinarias deben contar con la opción de alta, baja y modificación de los mismos. */
 
@@ -8,14 +9,14 @@
    export class Paciente{
     private nombre: string;
     private especie: string;
-    public id: number; 
+    private idDueño: number; 
 
     //constructor
 
     public constructor(nombre: string, especie: string,idDueño: number){
         this.nombre = nombre;
         this.especie = especie;
-        this.id = idDueño;
+        this.idDueño = idDueño;
     }
 
     //getters
@@ -27,8 +28,8 @@
         return this.especie
     }
 
-   public getId():number{
-        return this.id
+   public getIdDueño():number{
+        return this.idDueño
     }
     
     
@@ -57,7 +58,7 @@
     }
 
     public datosAnimal(): string {
-        return `paciente: Nombre: ${this.nombre}, Especie: ${this.especie}, Dueño: ${this.id}`;
+        return `paciente: Nombre: ${this.nombre}, Especie: ${this.especie}, Dueño: ${this.idDueño}`;
       }
 
       //modificar paciente
@@ -74,11 +75,3 @@
         }
       }
 }
-/*
-public getCostoTotal(): number {
-  let precio = this.getPrecioBase();
-  if (this.limpieza) {
-      precio *= 1.10; // 10% adicional de limpieza
-  }
-  return precio * this.iva; // Se agrega 21% de IVA
-}*/

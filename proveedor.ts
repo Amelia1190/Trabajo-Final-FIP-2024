@@ -52,4 +52,10 @@
     public obtenerInformacion(): string {
         return `id: ${this.id}, nombre: ${this.nombre}, numeroTelefono: ${this.telefono}`;
       }*/
+<<<<<<< HEAD
 }
+=======
+
+
+    }
+>>>>>>> main
