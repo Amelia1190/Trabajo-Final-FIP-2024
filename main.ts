@@ -1,6 +1,6 @@
 
-import { Paciente } from "./paciente"
-import { Cliente } from "./cliente";
+import { Paciente } from "./paciente";
+import { Cliente } from "./Cliente"
 import { Proveedor } from "./proveedor";
 import { altaVeterinaria, RedVeterinaria, altaProveedor, bajaProveedor, modificarProveedor, modificarVeterinaria, bajaVeterinaria } from "./redVeterinaria";
 import {altaCliente, bajaCliente, altaPaciente, bajaPaciente, modificarNombreCliente, modificarTelefonoCliente, modificarPaciente} from "./sucursalVeterinaria"

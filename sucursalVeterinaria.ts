@@ -1,6 +1,6 @@
 import { Cliente } from "./Cliente";
-import { Paciente } from "./Paciente";
-import { Proveedor } from "./Provedor";
+import { Paciente } from "./paciente";
+import { Proveedor } from "./proveedor";
 
 
 import * as readlineSync from 'readline-sync';
@@ -207,7 +207,7 @@ export function bajaPaciente(arrCliente:Cliente[],arrPacientes:Paciente[]):void 
  
   
   if(ubicacionId!=-1){
-    console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascota())
+    console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascotas())
     let borrarPaciente=readlineSync.question("Ingrese el nombre del paciente a dar de baja: ")
     let eliminar:boolean=false;
     let i:number=0;

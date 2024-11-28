@@ -1,8 +1,8 @@
-import { Cliente } from "./cliente";
+import { Cliente } from "./Cliente";
 import { Paciente } from "./paciente";
 import { Proveedor } from "./proveedor";
 import { Veterinaria } from "./sucursalVeterinaria";
-import { existeId, crearId} from "./sucursalVeterinaria";
+import { existeId, crearNumRandom} from "./sucursalVeterinaria";
 import * as readlineSync from 'readline-sync';
 
 /*Nuestro cliente es una red de veterinarias y desea poder acceder a la siguiente información:
@@ -62,9 +62,9 @@ export function altaProveedor(arrProveedor: Proveedor[]){
     let nombre: string = readlineSync.question("Ingrese Apellido y Nombre del proveedor: ");
     let telefono: number = readlineSync.questionInt("Ingrese el n° de telefono del proveedor: ");
       
-    let id: number = crearId(20000);
+    let id: number = crearNumRandom(20000);
     while(existeId(arrProveedor,id)==true){
-      id=crearId(20000);
+      id=crearNumRandom(20000);
     }
   
     let nProveedor: Proveedor = new Proveedor(nombre, telefono, id);
@@ -107,10 +107,10 @@ export function altaProveedor(arrProveedor: Proveedor[]){
   export function altaVeterinaria(arrVeterinaria: Veterinaria[], arrClientes: Cliente[], arrPacientes: Paciente[]){
       let nombre : string = readlineSync.question("Ingrese el nombre de la veterinaria: ");
       let direccion: string = readlineSync.question("ingrese dirección: ")
-      let id: number = crearId(20000);
+      let id: number = crearNumRandom(20000);
       
     while(existeId(arrVeterinaria,id)==true){
-      id=crearId(20000);
+      id=crearNumRandom(20000);
     }
       
       let listaClientes: Cliente[] = arrClientes;
