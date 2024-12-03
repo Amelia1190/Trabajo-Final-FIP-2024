@@ -108,12 +108,26 @@ export function altaCliente(listaClientes: Cliente[]){
   while(existeId(listaClientes,id)==true){
     id=crearId(25000);
   }
-    
+   //crear nuevo cliente 
   let nuevoCliente : Cliente = new Cliente(nombre, telefono, id );
-  listaClientes.push(nuevoCliente)
   
-  return listaClientes
+    // Agregar el cliente al arreglo
+  listaClientes.push(nuevoCliente)
+
+  console.log(" cliente agregado con éxito.");
+
+  //me muestra lOS CLIENTES
+  console.log("Lista de Clientes:");
+  listaClientes.forEach((Cliente, index) => {
+    console.log(`Lugar: ${index + 1}:`);
+    console.log(`Nombre: ${Cliente.getNombre()}`);
+    console.log(`Telefono: ${Cliente.getTelefono()}`);
+    console.log(`ID: ${Cliente.getId()}`);
+    console.log("------------------------");
+  });
 }
+
+
  //--- buscar por id a un cliente/ proveedor
  
  export function buscarPorId(arreglo:Cliente[]|Proveedor[],id:number){
@@ -180,13 +194,24 @@ export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
   
   if(ubicacionId!= -1){
     let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
+    //agrega el paciente al arreglo
     arrPacientes.push(nuevoPaciente);
+    console.log(" paciente agregado con éxito.");
     arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
   }else{
     console.log("No se encontro Id ingresado")
   }
-  return arrPacientes
-}
+     //me muestra lOS pacientes
+     console.log("Lista de pacientes:");
+     arrPacientes.forEach((paciente, index) => {
+       console.log(`N° en lista: ${index + 1}:`);
+       console.log(`Nombre: ${paciente.getNombre()}`);
+       console.log(`especie: ${paciente.getEspecie()}`);
+       console.log(`Id Dueño: ${paciente.getIdDueño()}`);
+       console.log("------------------------");
+     });
+   }
+
 
 //--- baja paciente
 

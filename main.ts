@@ -12,17 +12,17 @@ import * as rls from 'readline-sync'
 
 let listaClientes: Cliente[] = [];
 
-const cliente1 = new Cliente( "Amelia", 228452658, 5625)
+const cliente1 = new Cliente( "Amelia", 2284526458, 5625)
 const cliente2 = new Cliente ("Carolina", 2284754715, 4785)
 // Crear una instancia de la clase Cliente
-const cliente = new Cliente("Juan", 123456789, 1);
+const cliente = new Cliente("Juan", 2284345689, 1510);
 
-// Simular varias visitas del cliente
-for (let i = 0; i < 10; i++) {
-  cliente.contadorVIP(cliente);
-}
+
+
 
 //agrego objeto cliente al arreglo
+
+
 listaClientes = [];
 listaClientes.push(cliente);
 listaClientes.push(cliente1);
@@ -59,9 +59,9 @@ arregloVeterinarias.push(sucursal2);
 //provee
 let listaProveedores: Proveedor[] = [];
 
-const proveedor1 = new Proveedor("Roberto Sanchez Dogui", 3386,95565 );
+const proveedor1 = new Proveedor("Roberto Sanchez Dogui", 2284565886,95565 );
 const proveedor2 = new Proveedor("Analia Pedero sabrositos ", 228465325, 45218);
-const proveedor3 = new Proveedor("Distribuidora sabatini", 2284556523, 29864);
+const proveedor3 = new Proveedor("Andres Perez Whiskas", 2284556523, 29864);
 
 
 // Agregar objetos Proveedor al arreglo
@@ -148,14 +148,9 @@ switch (opcion) {
 
         break;
     case 13:
-       console.log("Ingrese el ID del cliente para verificar si es VIP:");
-        const idClienteVIP = rls.questionInt("Ingrese el ID del cliente: ");
-  
-         listaClientes.forEach(cliente => {
-         if (cliente.getId() === idClienteVIP) {
-          cliente.contadorVIP(cliente);
-          }
-         });
+        case 13:
+ 
+       
         break;
     case 14:
         console.log ("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");

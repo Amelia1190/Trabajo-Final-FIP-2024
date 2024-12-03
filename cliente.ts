@@ -73,4 +73,6 @@ baja y modificación de los mismos. */
           console.log("El cliente no es VIP");
         }
     }
+
+    
 }

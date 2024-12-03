@@ -9,10 +9,10 @@ var sucursalVeterinaria_2 = require("./sucursalVeterinaria");
 var rls = require("readline-sync");
 //clientes
 var listaClientes = [];
-var cliente1 = new Cliente_1.Cliente("Amelia", 228452658, 5625);
+var cliente1 = new Cliente_1.Cliente("Amelia", 2284526458, 5625);
 var cliente2 = new Cliente_1.Cliente("Carolina", 2284754715, 4785);
 // Crear una instancia de la clase Cliente
-var cliente = new Cliente_1.Cliente("Juan", 123456789, 1);
+var cliente = new Cliente_1.Cliente("Juan", 2284345689, 1510);
 // Simular varias visitas del cliente
 for (var i = 0; i < 10; i++) {
     cliente.contadorVIP(cliente);
@@ -39,9 +39,9 @@ arregloVeterinarias.push(sucursal1);
 arregloVeterinarias.push(sucursal2);
 //provee
 var listaProveedores = [];
-var proveedor1 = new proveedor_1.Proveedor("Roberto Sanchez Dogui", 3386, 95565);
+var proveedor1 = new proveedor_1.Proveedor("Roberto Sanchez Dogui", 2284565886, 95565);
 var proveedor2 = new proveedor_1.Proveedor("Analia Pedero sabrositos ", 228465325, 45218);
-var proveedor3 = new proveedor_1.Proveedor("Distribuidora sabatini", 2284556523, 29864);
+var proveedor3 = new proveedor_1.Proveedor("Andres Perez Whiskas", 2284556523, 29864);
 // Agregar objetos Proveedor al arreglo
 listaProveedores.push(proveedor1);
 listaProveedores.push(proveedor2);
@@ -112,6 +112,7 @@ var _loop_1 = function () {
         case 12:
             (0, redVeterinaria_1.bajaProveedor)(listaProveedores);
             break;
+        case 13:
         case 13:
             console.log("Ingrese el ID del cliente para verificar si es VIP:");
             var idClienteVIP_1 = rls.questionInt("Ingrese el ID del cliente: ");

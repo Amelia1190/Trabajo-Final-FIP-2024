@@ -81,9 +81,20 @@ function altaCliente(listaClientes) {
     while (existeId(listaClientes, id) == true) {
         id = crearId(25000);
     }
+    //crear nuevo cliente 
     var nuevoCliente = new Cliente_1.Cliente(nombre, telefono, id);
+    // Agregar el cliente al arreglo
     listaClientes.push(nuevoCliente);
-    return listaClientes;
+    console.log(" cliente agregado con éxito.");
+    //me muestra lOS CLIENTES
+    console.log("Lista de Clientes:");
+    listaClientes.forEach(function (Cliente, index) {
+        console.log("Lugar: ".concat(index + 1, ":"));
+        console.log("Nombre: ".concat(Cliente.getNombre()));
+        console.log("Telefono: ".concat(Cliente.getTelefono()));
+        console.log("ID: ".concat(Cliente.getId()));
+        console.log("------------------------");
+    });
 }
 //--- buscar por id a un cliente/ proveedor
 function buscarPorId(arreglo, id) {
@@ -142,13 +153,23 @@ function altaPaciente(arrCliente, arrPacientes) {
     var ubicacionId = buscarPorId(arrCliente, idDeCliente);
     if (ubicacionId != -1) {
         var nuevoPaciente = new paciente_1.Paciente(nombre, especie, idDeCliente);
+        //agrega el paciente al arreglo
         arrPacientes.push(nuevoPaciente);
+        console.log(" paciente agregado con éxito.");
         arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
     }
     else {
         console.log("No se encontro Id ingresado");
     }
-    return arrPacientes;
+    //me muestra lOS pacientes
+    console.log("Lista de pacientes:");
+    arrPacientes.forEach(function (paciente, index) {
+        console.log("N\u00B0 en lista: ".concat(index + 1, ":"));
+        console.log("Nombre: ".concat(paciente.getNombre()));
+        console.log("especie: ".concat(paciente.getEspecie()));
+        console.log("Id Due\u00F1o: ".concat(paciente.getIdDueño()));
+        console.log("------------------------");
+    });
 }
 //--- baja paciente
 function bajaPaciente(arrCliente) {

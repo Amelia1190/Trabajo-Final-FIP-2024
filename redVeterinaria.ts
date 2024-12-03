@@ -67,8 +67,21 @@ export function altaProveedor(arrProveedor: Proveedor[]){
     }
   
     let nProveedor: Proveedor = new Proveedor(nombre, telefono, id);
+
+    //agrego al arreglo de proveedores
     arrProveedor.push(nProveedor);
-    console.log(arrProveedor);
+      console.log(" proveedor agregado con éxito.");
+
+  //me muestra lOS proveedores
+  console.log("Lista de Proveedores:");
+  arrProveedor.forEach((proveedor, index) => {
+    console.log(`Lugar en la lista: ${index + 1}:`);
+    console.log(`Nombre: ${proveedor.getNombre()}`);
+    console.log(`Telefono: ${proveedor.getTelefono()}`);
+    console.log(`ID: ${proveedor.getId()}`);
+    console.log("------------------------");
+  });
+
   }
   
   // --- Modificar datos de Proveedor
@@ -154,9 +167,7 @@ export function altaVeterinaria(arregloVeterinarias: Veterinaria[],listaClientes
       console.log(arregloVete)
   
   }
-  
-  
-  
+
   //--- baja Veterinaria  por Id
   
   export function bajaVeterinaria(arregloVete:Veterinaria[], id: number):void{
