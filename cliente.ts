@@ -15,7 +15,7 @@ baja y modificación de los mismos. */
     private listaMascotas:Paciente [];
     
     //constructor
-    public constructor(nombre:string, telefono: number,idDueño:number){
+    public constructor(nombre:string, telefono: number,idDueño:number, numDeVisitas: number){
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=idDueño;
@@ -68,9 +68,17 @@ baja y modificación de los mismos. */
         console.log(`Número de visitas: ${cliente.getnumDeVisitas()}`);
       
         if (cliente.getnumDeVisitas() >= 5) {
-          console.log("!!Es cliente VIP!!");
+          console.log("¡¡Es cliente VIP!!");
         } else {
           console.log("El cliente no es VIP");
         }
     }
+
+//     // Simular varias visitas del cliente
+// export function contadorVisitas(numDeVisitas: number) {
+//    for (let i = 0; i < 10; i++) {
+//     cliente.contadorVIP(Cliente);
+//   } 
 }
+
+

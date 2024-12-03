@@ -12,15 +12,12 @@ import * as rls from 'readline-sync'
 
 let listaClientes: Cliente[] = [];
 
-const cliente1 = new Cliente( "Amelia", 228452658, 5625)
-const cliente2 = new Cliente ("Carolina", 2284754715, 4785)
+const cliente1 = new Cliente( "Amelia", 228452658, 5625, 2)
+const cliente2 = new Cliente ("Carolina", 2284754715, 4785, 6)
 // Crear una instancia de la clase Cliente
-const cliente = new Cliente("Juan", 123456789, 1);
+const cliente = new Cliente("Juan", 123456789, 1, 4);
 
-// Simular varias visitas del cliente
-for (let i = 0; i < 10; i++) {
-  cliente.contadorVIP(cliente);
-}
+
 
 //agrego objeto cliente al arreglo
 listaClientes = [];
@@ -43,11 +40,11 @@ listaGeneralMascotas.push(paciente2);
 
 let arregloVeterinarias: Veterinaria[]=[];
 
-const sucursal1= new Veterinaria("Patitas", "Belgrano 3454", 1112,[ new Cliente("Juan", 123456789, 1), new Cliente("Ana", 987654321, 2),
+const sucursal1= new Veterinaria("Patitas", "Belgrano 3454", 1112,[ new Cliente("Juan", 123456789, 1, 1), new Cliente("Ana", 987654321, 2, 5),
   ], [ new Paciente("Lola", "gato", 5625), new Paciente("Tito", "pez", 4785),]);
 
 
-const sucursal2= new Veterinaria ("Full Mascotas", "Alsina 2100", 1113, [new Cliente("Pedro", 111111111, 3),new Cliente("Luisa", 222222222, 4),
+const sucursal2= new Veterinaria ("Full Mascotas", "Alsina 2100", 1113, [new Cliente("Pedro", 111111111, 3, 4),new Cliente("Luisa", 222222222, 4, 7),
     ],[new Paciente("Moro", "perro", 1234),new Paciente("Pipo", "conejo", 5678),] );
 
 // Agregar objetos Veterinaria al arreglo
@@ -169,7 +166,7 @@ if (menu2 === 1) {
     console.log(opcion);
 } else {
     console.error("-----------------------------");
-    console.error("A SALIDO.");
+    console.error("HA SALIDO.");
     console.error("-----------------------------");
     break;
 }
