@@ -74,11 +74,7 @@ baja y modificación de los mismos. */
         }
     }
 
-//     // Simular varias visitas del cliente
-// export function contadorVisitas(numDeVisitas: number) {
-//    for (let i = 0; i < 10; i++) {
-//     cliente.contadorVIP(Cliente);
-//   } 
+    
 }
 
 

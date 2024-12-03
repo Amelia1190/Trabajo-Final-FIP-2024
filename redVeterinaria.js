@@ -54,8 +54,18 @@ function altaProveedor(arrProveedor) {
         id = (0, sucursalVeterinaria_2.crearId)(3500);
     }
     var nProveedor = new proveedor_1.Proveedor(nombre, telefono, id);
+    //agrego al arreglo de proveedores
     arrProveedor.push(nProveedor);
-    console.log(arrProveedor);
+    console.log(" proveedor agregado con éxito.");
+    //me muestra lOS proveedores
+    console.log("Lista de Proveedores:");
+    arrProveedor.forEach(function (proveedor, index) {
+        console.log("Lugar en la lista: ".concat(index + 1, ":"));
+        console.log("Nombre: ".concat(proveedor.getNombre()));
+        console.log("Telefono: ".concat(proveedor.getTelefono()));
+        console.log("ID: ".concat(proveedor.getId()));
+        console.log("------------------------");
+    });
 }
 // --- Modificar datos de Proveedor
 function modificarProveedor(arregloProveedores) {
