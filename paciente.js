@@ -28,17 +28,14 @@ var Paciente = /** @class */ (function () {
     Paciente.prototype.setNombre = function (nuevoNombre) {
         this.nombre = nuevoNombre;
     };
-    // mascota exotica
+    //es Exotica
     Paciente.prototype.esExotica = function () {
-        var ok = false;
-        if (this.especie != "perro" && this.especie != "gato") {
-            ok = true;
-            console.log("el paciente " + this.nombre + " es una especie exotica");
+        if (this.especie !== "perro" && this.especie !== "gato") {
+            return "La Mascota  ".concat(this.nombre, " es ex\u00F3tica");
         }
         else {
-            console.log("el paciente " + this.nombre + " no es una especie exotica");
+            return "la Mascota  ".concat(this.nombre, " no es ex\u00F3tica");
         }
-        return ok;
     };
     return Paciente;
 }());

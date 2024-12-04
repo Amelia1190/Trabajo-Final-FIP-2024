@@ -118,8 +118,9 @@ export function altaCliente(listaClientes: Cliente[]){
 
   //me muestra lOS CLIENTES
   console.log("Lista de Clientes:");
-  listaClientes.forEach((Cliente, index) => {
-    console.log(`Lugar: ${index + 1}:`);
+  listaClientes.forEach((
+    Cliente, index) => {
+    console.log(`Cliente: ${index + 1}:`);
     console.log(`Nombre: ${Cliente.getNombre()}`);
     console.log(`Telefono: ${Cliente.getTelefono()}`);
     console.log(`ID: ${Cliente.getId()}`);
@@ -153,6 +154,9 @@ export function bajaCliente(arrClientes:Cliente[]):void{
   if(ubicacion!= -1){
     arrClientes.splice(ubicacion,1);
     console.log("El cliente ingresado se dio de baja");
+
+    console.log("Lista de clientes vigentes:");
+    console.table(arrClientes)
   }else{
     console.log("No se encontro id en el sistema")
   }
@@ -182,33 +186,38 @@ export function modificarCliente(arrCliente: Cliente[], datoAmodificar: string) 
 
 
 //--- Alta  paciente
-export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
-  let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
-  let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
-  let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente: ");
-
-  let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+   
+   export function altaPaciente(arrCliente:Cliente[], arrPacientes:Paciente[]){
+    let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
+    let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
+    let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente: ");
   
-  if(ubicacionId!= -1){
-    let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
-    //agrega el paciente al arreglo
-    arrPacientes.push(nuevoPaciente);
-    console.log(" paciente agregado con éxito.");
-    arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
-  }else{
-    console.log("No se encontro Id ingresado")
+    let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+    
+    if(ubicacionId!= -1){
+      let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
+      
+      arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+      arrPacientes.push(nuevoPaciente); 
+      console.log("Paciente agregado con éxito");
+      
+      console.log(nuevoPaciente.esExotica());
+      
+    }else{
+      console.log("No se encontro Id ingresado")
+    }
+    
+    //me muestra lOS pacientes
+    console.log("Lista de pacientes:");
+    arrPacientes.forEach((paciente, index) => {
+      console.log(`paciente: ${index + 1}:`);
+      console.log(`Nombre: ${paciente.getNombre()}`);
+      console.log(`especie: ${paciente.getEspecie()}` );
+      
+      console.log(`Id Dueño: ${paciente.getIdDueño()}`);
+      console.log("------------------------");
+    });
   }
-     //me muestra lOS pacientes
-     console.log("Lista de pacientes:");
-     arrPacientes.forEach((paciente, index) => {
-       console.log(`N° en lista: ${index + 1}:`);
-       console.log(`Nombre: ${paciente.getNombre()}`);
-       console.log(`especie: ${paciente.getEspecie()}`);
-       console.log(`Id Dueño: ${paciente.getIdDueño()}`);
-       console.log("------------------------");
-     });
-   }
-
 
 //--- baja paciente
 
@@ -224,6 +233,9 @@ export function bajaPaciente(arrCliente:Cliente[]):void {
     // let i:number=0;
     console.log("El paciente ha sido dado de baja.");
   }
+
+
+
 }
 //--- modificar Paciente
 
@@ -233,24 +245,9 @@ export function modificarPaciente(arrCliente: Cliente[]):void {
  
   
   if(ubicacionId!=-1){
-    console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascotas()) 
-    let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a modificar: ")
-    /*let ok:boolean=false;
-    let i:number=0;
-//no funciona while
-/*while((ok==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
-      if(pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
-        ok=true;
-        let nuevoNombre=readlineSync.question("Ingrese el nuevo Nombre del paciente: ")
-        let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
-        
-        arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
-        arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);*/
-        console.log("El paciente se modificó exitosamente")
-     
     
-  }else{
-    console.log("El Id del cliente Ingresado no se encontro")
+    let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a modificar: ")
+    
+        console.log("El paciente se modificó exitosamente")
   }
-  
 }

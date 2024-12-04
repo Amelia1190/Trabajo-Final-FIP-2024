@@ -155,34 +155,18 @@ switch (opcion) {
       bajaProveedor(listaProveedores);
       break;
     case 13:
-<<<<<<< HEAD
-       console.log("Ingrese el ID del cliente para verificar si es VIP:");
-        const idClienteVIP = rls.questionInt("Ingrese el ID del cliente: ");
-  
-         listaClientes.forEach(cliente => {
-         if (cliente.getId() === idClienteVIP) {
-=======
       console.log("Ingrese el ID del cliente para verificar si es VIP:");
       const idClienteVIP = rls.questionInt("Ingrese el ID del cliente: ");
       listaClientes.forEach(cliente => {
         if (cliente.getId() === idClienteVIP) {
->>>>>>> 6a3bd779bbfb026fa5908d7b924a422cb0d8af22
           cliente.contadorVIP(cliente);
         }
       });
       break;
     case 14:
-<<<<<<< HEAD
-    
-        break;
-
-    case 15:
-        console.log ("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");
-=======
       console.log("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");
       break;
   }
->>>>>>> 6a3bd779bbfb026fa5908d7b924a422cb0d8af22
 
   // VUELVE AL MENU PRINCIPAL
   let menu2: number = rls.questionInt("Ingrese 1 para volver al menu principal o 2 para salir: ");

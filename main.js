@@ -9,24 +9,32 @@ var sucursalVeterinaria_2 = require("./sucursalVeterinaria");
 var rls = require("readline-sync");
 //clientes
 var listaClientes = [];
+// Crear una instancia de la clase Cliente
 var cliente1 = new cliente_1.Cliente("Amelia", 2284526458, 5625, 3);
 var cliente2 = new cliente_1.Cliente("Carolina", 2284754715, 4785, 4);
-// Crear una instancia de la clase Cliente
-var cliente = new cliente_1.Cliente("Juan", 2284345689, 1510, 10);
+var cliente3 = new cliente_1.Cliente("Juan", 2284345689, 1510, 10);
+var cliente4 = new cliente_1.Cliente("Sofía", 2284123456, 1234, 5);
+var cliente5 = new cliente_1.Cliente("Mateo", 2289876543, 5678, 3);
 //agrego objeto cliente al arreglo
 listaClientes = [];
-listaClientes.push(cliente);
+// Agregamos clientes a la lista
 listaClientes.push(cliente1);
 listaClientes.push(cliente2);
+listaClientes.push(cliente3);
+listaClientes.push(cliente4);
+listaClientes.push(cliente5);
 //pacientes
 var listaGeneralMascotas = [];
 var paciente1 = new paciente_1.Paciente("Lola", "gato", 5625);
 var paciente2 = new paciente_1.Paciente("Tito", "pez", 4785);
+var paciente3 = new paciente_1.Paciente("Firulais", "perro", 1510);
+var paciente4 = new paciente_1.Paciente("Pelusa", "gato", 1234);
+var paciente5 = new paciente_1.Paciente("Rex", "perro", 5678);
 listaGeneralMascotas.push(paciente1);
 listaGeneralMascotas.push(paciente2);
-// Llamar al método esExotica()
-paciente1.esExotica();
-paciente2.esExotica();
+listaGeneralMascotas.push(paciente3);
+listaGeneralMascotas.push(paciente4);
+listaGeneralMascotas.push(paciente5);
 //sucursales vete
 var arregloVeterinarias = [];
 var sucursal1 = new sucursalVeterinaria_2.Veterinaria("Patitas", "Belgrano 3454", 1112);
@@ -119,26 +127,17 @@ var _loop_1 = function () {
             });
             break;
         case 14:
-            console.log("Ingrese el nombre de la mascota para verificar si es exotica");
-            var nombreMascota_1 = rls.question("Ingrese el nombre  de la mascota: ");
-            listaGeneralMascotas.forEach(function (paciente) {
-                if (paciente.getNombre() === nombreMascota_1) {
-                    paciente.esExotica();
-                }
-            });
-            break;
-        case 15:
             console.log("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");
             break;
     }
-    // VUELVE AL MENU PRINCIPAL 
-    var menu2 = rls.questionInt("ingrese 1 para volver al menu principal o 2 para salir : ");
+    // VUELVE AL MENU PRINCIPAL
+    var menu2 = rls.questionInt("Ingrese 1 para volver al menu principal o 2 para salir: ");
     if (menu2 === 1) {
         console.log(opcion);
     }
     else {
         console.error("-----------------------------");
-        console.error("A SALIDO.");
+        console.error("Gracias por visitarnos. ¡Que tengas un buen día!.");
         console.error("-----------------------------");
         return "break";
     }
@@ -148,4 +147,3 @@ while (true) {
     if (state_1 === "break")
         break;
 }
-;

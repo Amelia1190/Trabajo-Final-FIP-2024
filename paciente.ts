@@ -44,17 +44,12 @@
         this.nombre=nuevoNombre
     }
 
-
-    // mascota exotica
-    public esExotica():boolean{
-        let ok:boolean = false;
-        if (this.especie != "perro" && this.especie != "gato"){
-            ok = true;
-            console.log("el paciente " + this.nombre + " es una especie exotica")
-        }else {
-            console.log("el paciente " + this.nombre + " no es una especie exotica")
-        }
-        return ok
+//es Exotica
+public esExotica(): string {
+    if (this.especie !== "perro" && this.especie !== "gato") {
+      return `La Mascota  ${this.nombre} es exótica`;
+    } else {
+      return `la Mascota  ${this.nombre} no es exótica`;
     }
-
+ }
 }

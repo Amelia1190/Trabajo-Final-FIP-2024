@@ -89,7 +89,7 @@ function altaCliente(listaClientes) {
     //me muestra lOS CLIENTES
     console.log("Lista de Clientes:");
     listaClientes.forEach(function (Cliente, index) {
-        console.log("Lugar: ".concat(index + 1, ":"));
+        console.log("Cliente: ".concat(index + 1, ":"));
         console.log("Nombre: ".concat(Cliente.getNombre()));
         console.log("Telefono: ".concat(Cliente.getTelefono()));
         console.log("ID: ".concat(Cliente.getId()));
@@ -119,6 +119,8 @@ function bajaCliente(arrClientes) {
     if (ubicacion != -1) {
         arrClientes.splice(ubicacion, 1);
         console.log("El cliente ingresado se dio de baja");
+        console.log("Lista de clientes vigentes:");
+        console.table(arrClientes);
     }
     else {
         console.log("No se encontro id en el sistema");
@@ -149,10 +151,10 @@ function altaPaciente(arrCliente, arrPacientes) {
     var ubicacionId = buscarPorId(arrCliente, idDeCliente);
     if (ubicacionId != -1) {
         var nuevoPaciente = new paciente_1.Paciente(nombre, especie, idDeCliente);
-        //agrega el paciente al arreglo
-        arrPacientes.push(nuevoPaciente);
-        console.log(" paciente agregado con éxito.");
         arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+        arrPacientes.push(nuevoPaciente);
+        console.log("Paciente agregado con éxito");
+        console.log(nuevoPaciente.esExotica());
     }
     else {
         console.log("No se encontro Id ingresado");
@@ -160,7 +162,7 @@ function altaPaciente(arrCliente, arrPacientes) {
     //me muestra lOS pacientes
     console.log("Lista de pacientes:");
     arrPacientes.forEach(function (paciente, index) {
-        console.log("N\u00B0 en lista: ".concat(index + 1, ":"));
+        console.log("paciente: ".concat(index + 1, ":"));
         console.log("Nombre: ".concat(paciente.getNombre()));
         console.log("especie: ".concat(paciente.getEspecie()));
         console.log("Id Due\u00F1o: ".concat(paciente.getIdDueño()));
@@ -184,22 +186,7 @@ function modificarPaciente(arrCliente) {
     var idCliente = readlineSync.questionInt("Ingrese Id del Cliente, para modificar el paciente: ");
     var ubicacionId = buscarPorId(arrCliente, idCliente);
     if (ubicacionId != -1) {
-        console.log("Lista de pacientes " + arrCliente[ubicacionId].getListaMascotas());
         var pacienteModificar = readlineSync.question("Ingrese el nombre del paciente a modificar: ");
-        /*let ok:boolean=false;
-        let i:number=0;
-    //no funciona while
-    /*while((ok==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
-          if(pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
-            ok=true;
-            let nuevoNombre=readlineSync.question("Ingrese el nuevo Nombre del paciente: ")
-            let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
-            
-            arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
-            arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);*/
         console.log("El paciente se modificó exitosamente");
-    }
-    else {
-        console.log("El Id del cliente Ingresado no se encontro");
     }
 }

@@ -105,7 +105,7 @@ export function modificarProveedor(arregloProveedores: Proveedor[]) {
     //me muestra lOS proveedores
      console.log("Lista de Proveedores:");
      arregloProveedores.forEach((proveedor, index) => {
-    console.log(`Lugar en la lista: ${index + 1}:`);
+    console.log(`Proveedor: ${index + 1}:`);
     console.log(`Nombre: ${proveedor.getNombre()}`);
     console.log(`Telefono: ${proveedor.getTelefono()}`);
     console.log(`ID: ${proveedor.getId()}`);
@@ -121,7 +121,7 @@ export function modificarProveedor(arregloProveedores: Proveedor[]) {
   //--- baja Proveedor 
 
   export function bajaProveedor(proveedor: Proveedor[]){ 
-    let bajaId:number=rls.questionInt("Ingrese Id a dar de baja: ")
+    let bajaId:number=rls.questionInt("Ingrese Id del Proveedor a dar de baja: ")
     for (let i= 0; i< proveedor.length; i++){
       if (proveedor[i].getId() ==bajaId){
         console.log(`Se dio de baja el proveedor ${proveedor[i].getNombre()}`);
@@ -187,10 +187,10 @@ export function altaVeterinaria(arregloVeterinarias: Veterinaria[]){
     
     console.log("Sucursal modificada con éxito.");
     
-    //me muestra lOS proveedores
+    //me muestra las sucursales
      console.log("Lista de Sucursales:");
      arregloVete.forEach((Veterinaria, index) => {
-    console.log(`Lugar en la lista: ${index + 1}:`);
+    console.log(`Sucursal: ${index + 1}:`);
     console.log(`Nombre: ${Veterinaria.getNombre()}`);
     console.log(`Direccion: ${Veterinaria.getDireccion()}`);
     console.log(`ID: ${Veterinaria.getId()}`);

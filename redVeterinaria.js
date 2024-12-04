@@ -83,7 +83,7 @@ function modificarProveedor(arregloProveedores) {
         //me muestra lOS proveedores
         console.log("Lista de Proveedores:");
         arregloProveedores.forEach(function (proveedor, index) {
-            console.log("Lugar en la lista: ".concat(index + 1, ":"));
+            console.log("Proveedor: ".concat(index + 1, ":"));
             console.log("Nombre: ".concat(proveedor.getNombre()));
             console.log("Telefono: ".concat(proveedor.getTelefono()));
             console.log("ID: ".concat(proveedor.getId()));
@@ -96,7 +96,7 @@ function modificarProveedor(arregloProveedores) {
 }
 //--- baja Proveedor 
 function bajaProveedor(proveedor) {
-    var bajaId = rls.questionInt("Ingrese Id a dar de baja: ");
+    var bajaId = rls.questionInt("Ingrese Id del Proveedor a dar de baja: ");
     for (var i = 0; i < proveedor.length; i++) {
         if (proveedor[i].getId() == bajaId) {
             console.log("Se dio de baja el proveedor ".concat(proveedor[i].getNombre()));
@@ -145,10 +145,10 @@ function modificarVeterinaria(arregloVete) {
         var sucModificada = new sucursalVeterinaria_1.Veterinaria(nombre, direccion, id);
         arregloVete[posicion] = sucModificada;
         console.log("Sucursal modificada con éxito.");
-        //me muestra lOS proveedores
+        //me muestra las sucursales
         console.log("Lista de Sucursales:");
         arregloVete.forEach(function (Veterinaria, index) {
-            console.log("Lugar en la lista: ".concat(index + 1, ":"));
+            console.log("Sucursal: ".concat(index + 1, ":"));
             console.log("Nombre: ".concat(Veterinaria.getNombre()));
             console.log("Direccion: ".concat(Veterinaria.getDireccion()));
             console.log("ID: ".concat(Veterinaria.getId()));
