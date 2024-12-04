@@ -1,6 +1,5 @@
-
 import { Paciente } from "./paciente";
-import { Cliente } from "./Cliente"
+import { Cliente } from "./cliente"
 import { Proveedor } from "./proveedor";
 import { altaVeterinaria, altaProveedor, bajaProveedor, modificarProveedor, modificarVeterinaria, bajaVeterinaria } from "./redVeterinaria";
 import {altaCliente, bajaCliente, altaPaciente, bajaPaciente, modificarCliente, modificarPaciente} from "./sucursalVeterinaria"
@@ -12,12 +11,10 @@ import * as rls from 'readline-sync'
 
 let listaClientes: Cliente[] = [];
 
-const cliente1 = new Cliente( "Amelia", 228452658, 5625, 2)
-const cliente2 = new Cliente ("Carolina", 2284754715, 4785, 6)
+const cliente1 = new Cliente( "Amelia", 2284526458, 5625,3)
+const cliente2 = new Cliente ("Carolina", 2284754715, 4785, 4)
 // Crear una instancia de la clase Cliente
-const cliente = new Cliente("Juan", 123456789, 1, 4);
-
-
+const cliente = new Cliente("Juan", 2284345689, 1510,10);
 
 
 
@@ -45,12 +42,10 @@ listaGeneralMascotas.push(paciente2);
 
 let arregloVeterinarias: Veterinaria[]=[];
 
-const sucursal1= new Veterinaria("Patitas", "Belgrano 3454", 1112,[ new Cliente("Juan", 123456789, 1, 1), new Cliente("Ana", 987654321, 2, 5),
-  ], [ new Paciente("Lola", "gato", 5625), new Paciente("Tito", "pez", 4785),]);
+const sucursal1= new Veterinaria("Patitas", "Belgrano 3454", 1112);
 
 
-const sucursal2= new Veterinaria ("Full Mascotas", "Alsina 2100", 1113, [new Cliente("Pedro", 111111111, 3, 4),new Cliente("Luisa", 222222222, 4, 7),
-    ],[new Paciente("Moro", "perro", 1234),new Paciente("Pipo", "conejo", 5678),] );
+const sucursal2= new Veterinaria ("Full Mascotas", "Alsina 2100", 1113 );
 
 // Agregar objetos Veterinaria al arreglo
 arregloVeterinarias.push(sucursal1);
@@ -108,7 +103,7 @@ console.log("Opción válida seleccionada:", opcion);
 // Una vez que se ha seleccionado una opción valida, se ejecuta el código correspondiente a ese número.
 switch (opcion) {
     case 1:
-        altaVeterinaria( arregloVeterinarias, listaClientes, listaGeneralMascotas);    
+        altaVeterinaria( arregloVeterinarias);    
         break;
     case 2:
         altaCliente(listaClientes);
@@ -120,7 +115,7 @@ switch (opcion) {
         altaProveedor(listaProveedores);
         break;
     case 5:
-        modificarVeterinaria(arregloVeterinarias, 5, listaClientes, listaGeneralMascotas);
+        modificarVeterinaria(arregloVeterinarias);
         break;
     case 6:
         modificarCliente(listaClientes, "telefono");
@@ -134,7 +129,7 @@ switch (opcion) {
         modificarProveedor(listaProveedores);
         break;
     case 9: 
-        bajaVeterinaria(arregloVeterinarias, 1112 );
+        bajaVeterinaria(arregloVeterinarias );
 
         break;
     case 10:
@@ -151,8 +146,14 @@ switch (opcion) {
         break;
     case 13:
         case 13:
- 
-       
+       console.log("Ingrese el ID del cliente para verificar si es VIP:");
+        const idClienteVIP = rls.questionInt("Ingrese el ID del cliente: ");
+  
+         listaClientes.forEach(cliente => {
+         if (cliente.getId() === idClienteVIP) {
+          cliente.contadorVIP(cliente);
+          }
+         });
         break;
     case 14:
         console.log ("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");
@@ -166,7 +167,7 @@ if (menu2 === 1) {
     console.log(opcion);
 } else {
     console.error("-----------------------------");
-    console.error("HA SALIDO.");
+    console.error("A SALIDO.");
     console.error("-----------------------------");
     break;
 }

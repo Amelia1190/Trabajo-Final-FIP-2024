@@ -19,7 +19,7 @@ baja y modificación de los mismos. */
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=idDueño;
-        this.numDeVisitas=0
+        this.numDeVisitas=numDeVisitas
         this.listaMascotas=[];
     }
     
@@ -64,7 +64,7 @@ baja y modificación de los mismos. */
 
 // contador para saber si es VIP
     public contadorVIP(cliente: Cliente): void {
-        cliente.setnumDeVisitas(cliente.getnumDeVisitas() + 1);
+        cliente.setnumDeVisitas(cliente.getnumDeVisitas());
         console.log(`Número de visitas: ${cliente.getnumDeVisitas()}`);
       
         if (cliente.getnumDeVisitas() >= 5) {
