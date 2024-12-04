@@ -15,11 +15,11 @@ baja y modificación de los mismos. */
     private listaMascotas:Paciente [];
     
     //constructor
-    public constructor(nombre:string, telefono: number,idDueño:number){
+    public constructor(nombre:string, telefono: number,idDueño:number, numDeVisitas: number){
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=idDueño;
-        this.numDeVisitas=0
+        this.numDeVisitas=numDeVisitas
         this.listaMascotas=[];
     }
     
@@ -61,18 +61,20 @@ baja y modificación de los mismos. */
         this.numDeVisitas=numDeVisitas  
 
     }
-    
-    
-    // contador vip
-    public contadorVIP(Cliente: Cliente){ 
-        if (this.numDeVisitas< 5){
-            Cliente.setnumDeVisitas (this.numDeVisitas+1)
-            console.log(this.numDeVisitas)
-            console.log ("El cliente no es VIP")
-                
-        }else {
-            console.log ("!!Es cliente VIP¡¡")
+
+// contador para saber si es VIP
+    public contadorVIP(cliente: Cliente): void {
+        cliente.setnumDeVisitas(cliente.getnumDeVisitas());
+        console.log(`Número de visitas: ${cliente.getnumDeVisitas()}`);
+      
+        if (cliente.getnumDeVisitas() >= 5) {
+          console.log("¡¡Es cliente VIP!!");
+        } else {
+          console.log("El cliente no es VIP");
         }
     }
 
+    
 }
+
+

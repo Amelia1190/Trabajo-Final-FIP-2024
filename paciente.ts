@@ -44,34 +44,12 @@
         this.nombre=nuevoNombre
     }
 
-
-    // mascota exotica
-    public esExotica():boolean{
-        let ok:boolean = false;
-        if (this.especie != "perro" && this.especie != "gato"){
-            ok = true;
-            console.log("el paciente " + this.nombre + " es una especie exotica")
-        }else {
-            console.log("el paciente " + this.nombre + " no es una especie exotica")
-        }
-        return ok
+//es Exotica
+public esExotica(): string {
+    if (this.especie !== "perro" && this.especie !== "gato") {
+      return `La Mascota  ${this.nombre} es exótica`;
+    } else {
+      return `la Mascota  ${this.nombre} no es exótica`;
     }
-
-    public datosAnimal(): string {
-        return `paciente: Nombre: ${this.nombre}, Especie: ${this.especie}, Dueño: ${this.idDueño}`;
-      }
-
-      //modificar paciente
-    
-      public modificarPaciente(  nombreNuevo: string, especieNuevo: string): void {
-        let pacienteAModificar: Paciente| undefined;//me lo agrega
-       
-        if (pacienteAModificar) {
-            pacienteAModificar.nombre = nombreNuevo;
-            pacienteAModificar.especie = especieNuevo;
-          console.log(`Paciente modificado: ${pacienteAModificar.datosAnimal()}`);
-        } else {
-          console.log(" El paciente no está registrado");
-        }
-      }
+ }
 }
