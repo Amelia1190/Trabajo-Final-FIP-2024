@@ -45,7 +45,7 @@
     }
 
 
-    // mascota exotica
+    // mascota exotica  
     public esExotica():boolean{
         let ok:boolean = false;
         if (this.especie != "perro" && this.especie != "gato"){
