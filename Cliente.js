@@ -8,11 +8,11 @@ baja y modificación de los mismos. */
 // Clase Cliente
 var Cliente = /** @class */ (function () {
     //constructor
-    function Cliente(nombre, telefono, idDueño) {
+    function Cliente(nombre, telefono, idDueño, numDeVisitas) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = idDueño;
-        this.numDeVisitas = 0;
+        this.numDeVisitas = numDeVisitas;
         this.listaMascotas = [];
     }
     //getters
@@ -43,10 +43,10 @@ var Cliente = /** @class */ (function () {
     };
     // contador para saber si es VIP
     Cliente.prototype.contadorVIP = function (cliente) {
-        cliente.setnumDeVisitas(cliente.getnumDeVisitas() + 1);
+        cliente.setnumDeVisitas(cliente.getnumDeVisitas());
         console.log("N\u00FAmero de visitas: ".concat(cliente.getnumDeVisitas()));
         if (cliente.getnumDeVisitas() >= 5) {
-            console.log("!!Es cliente VIP!!");
+            console.log("¡¡Es cliente VIP!!");
         }
         else {
             console.log("El cliente no es VIP");

@@ -38,6 +38,7 @@ listaGeneralMascotas.push(paciente1);
 listaGeneralMascotas.push(paciente2);
 
 
+
 //sucursales vete
 
 let arregloVeterinarias: Veterinaria[]=[];
@@ -145,7 +146,6 @@ switch (opcion) {
 
         break;
     case 13:
-        case 13:
        console.log("Ingrese el ID del cliente para verificar si es VIP:");
         const idClienteVIP = rls.questionInt("Ingrese el ID del cliente: ");
   
@@ -156,6 +156,10 @@ switch (opcion) {
          });
         break;
     case 14:
+    
+        break;
+
+    case 15:
         console.log ("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");
 
         break;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var paciente_1 = require("./paciente");
-var Cliente_1 = require("./Cliente");
+var cliente_1 = require("./cliente");
 var proveedor_1 = require("./proveedor");
 var redVeterinaria_1 = require("./redVeterinaria");
 var sucursalVeterinaria_1 = require("./sucursalVeterinaria");
@@ -9,14 +9,10 @@ var sucursalVeterinaria_2 = require("./sucursalVeterinaria");
 var rls = require("readline-sync");
 //clientes
 var listaClientes = [];
-var cliente1 = new Cliente_1.Cliente("Amelia", 2284526458, 5625);
-var cliente2 = new Cliente_1.Cliente("Carolina", 2284754715, 4785);
+var cliente1 = new cliente_1.Cliente("Amelia", 2284526458, 5625, 3);
+var cliente2 = new cliente_1.Cliente("Carolina", 2284754715, 4785, 4);
 // Crear una instancia de la clase Cliente
-var cliente = new Cliente_1.Cliente("Juan", 2284345689, 1510);
-// Simular varias visitas del cliente
-for (var i = 0; i < 10; i++) {
-    cliente.contadorVIP(cliente);
-}
+var cliente = new cliente_1.Cliente("Juan", 2284345689, 1510, 10);
 //agrego objeto cliente al arreglo
 listaClientes = [];
 listaClientes.push(cliente);
@@ -28,12 +24,13 @@ var paciente1 = new paciente_1.Paciente("Lola", "gato", 5625);
 var paciente2 = new paciente_1.Paciente("Tito", "pez", 4785);
 listaGeneralMascotas.push(paciente1);
 listaGeneralMascotas.push(paciente2);
+// Llamar al método esExotica()
+paciente1.esExotica();
+paciente2.esExotica();
 //sucursales vete
 var arregloVeterinarias = [];
-var sucursal1 = new sucursalVeterinaria_2.Veterinaria("Patitas", "Belgrano 3454", 1112, [new Cliente_1.Cliente("Juan", 123456789, 1), new Cliente_1.Cliente("Ana", 987654321, 2),
-], [new paciente_1.Paciente("Lola", "gato", 5625), new paciente_1.Paciente("Tito", "pez", 4785),]);
-var sucursal2 = new sucursalVeterinaria_2.Veterinaria("Full Mascotas", "Alsina 2100", 1113, [new Cliente_1.Cliente("Pedro", 111111111, 3), new Cliente_1.Cliente("Luisa", 222222222, 4),
-], [new paciente_1.Paciente("Moro", "perro", 1234), new paciente_1.Paciente("Pipo", "conejo", 5678),]);
+var sucursal1 = new sucursalVeterinaria_2.Veterinaria("Patitas", "Belgrano 3454", 1112);
+var sucursal2 = new sucursalVeterinaria_2.Veterinaria("Full Mascotas", "Alsina 2100", 1113);
 // Agregar objetos Veterinaria al arreglo
 arregloVeterinarias.push(sucursal1);
 arregloVeterinarias.push(sucursal2);
@@ -77,7 +74,7 @@ var _loop_1 = function () {
     // Una vez que se ha seleccionado una opción valida, se ejecuta el código correspondiente a ese número.
     switch (opcion) {
         case 1:
-            (0, redVeterinaria_1.altaVeterinaria)(arregloVeterinarias, listaClientes, listaGeneralMascotas);
+            (0, redVeterinaria_1.altaVeterinaria)(arregloVeterinarias);
             break;
         case 2:
             (0, sucursalVeterinaria_1.altaCliente)(listaClientes);
@@ -89,7 +86,7 @@ var _loop_1 = function () {
             (0, redVeterinaria_1.altaProveedor)(listaProveedores);
             break;
         case 5:
-            (0, redVeterinaria_1.modificarVeterinaria)(arregloVeterinarias, 5, listaClientes, listaGeneralMascotas);
+            (0, redVeterinaria_1.modificarVeterinaria)(arregloVeterinarias);
             break;
         case 6:
             (0, sucursalVeterinaria_1.modificarCliente)(listaClientes, "telefono");
@@ -101,7 +98,7 @@ var _loop_1 = function () {
             (0, redVeterinaria_1.modificarProveedor)(listaProveedores);
             break;
         case 9:
-            (0, redVeterinaria_1.bajaVeterinaria)(arregloVeterinarias, 1112);
+            (0, redVeterinaria_1.bajaVeterinaria)(arregloVeterinarias);
             break;
         case 10:
             (0, sucursalVeterinaria_1.bajaPaciente)(listaClientes);
@@ -113,7 +110,6 @@ var _loop_1 = function () {
             (0, redVeterinaria_1.bajaProveedor)(listaProveedores);
             break;
         case 13:
-        case 13:
             console.log("Ingrese el ID del cliente para verificar si es VIP:");
             var idClienteVIP_1 = rls.questionInt("Ingrese el ID del cliente: ");
             listaClientes.forEach(function (cliente) {
@@ -123,6 +119,15 @@ var _loop_1 = function () {
             });
             break;
         case 14:
+            console.log("Ingrese el nombre de la mascota para verificar si es exotica");
+            var nombreMascota_1 = rls.question("Ingrese el nombre  de la mascota: ");
+            listaGeneralMascotas.forEach(function (paciente) {
+                if (paciente.getNombre() === nombreMascota_1) {
+                    paciente.esExotica();
+                }
+            });
+            break;
+        case 15:
             console.log("Muchas gracias por usar el servicio de red veterinaria 'Los rescataditos'. ¡Vuelva pronto!");
             break;
     }

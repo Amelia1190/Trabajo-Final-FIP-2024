@@ -80,6 +80,15 @@ function modificarProveedor(arregloProveedores) {
         var proveedorMod = new proveedor_1.Proveedor(nombre, telefono, idProveedor);
         arregloProveedores[posicion] = proveedorMod;
         console.log("Proveedor modificado con éxito.");
+        //me muestra lOS proveedores
+        console.log("Lista de Proveedores:");
+        arregloProveedores.forEach(function (proveedor, index) {
+            console.log("Lugar en la lista: ".concat(index + 1, ":"));
+            console.log("Nombre: ".concat(proveedor.getNombre()));
+            console.log("Telefono: ".concat(proveedor.getTelefono()));
+            console.log("ID: ".concat(proveedor.getId()));
+            console.log("------------------------");
+        });
     }
     else {
         console.log("Proveedor no encontrado.");
@@ -89,16 +98,18 @@ function modificarProveedor(arregloProveedores) {
 function bajaProveedor(proveedor) {
     var bajaId = rls.questionInt("Ingrese Id a dar de baja: ");
     for (var i = 0; i < proveedor.length; i++) {
-        if (bajaId === proveedor[i].getId()) {
+        if (proveedor[i].getId() == bajaId) {
+            console.log("Se dio de baja el proveedor ".concat(proveedor[i].getNombre()));
             proveedor.splice(i, 1);
-            console.log("Se dio de baja el Proveedor");
+            break;
         }
     }
-    console.log(proveedor);
+    console.log("proveedores vigentes:");
+    console.table(proveedor);
 }
 /*sucursales de Veterinarias*/
 //---alta Veterinaria
-function altaVeterinaria(arregloVeterinarias, listaClientes, listaGeneralMascotas) {
+function altaVeterinaria(arregloVeterinarias) {
     console.log("Ingrese los datos de la nueva sucursal:");
     var nombre = rls.question("Ingrese el nombre de la sucursal: ");
     var direccion = rls.question("Ingrese la dirección de la sucursal: ");
@@ -107,7 +118,7 @@ function altaVeterinaria(arregloVeterinarias, listaClientes, listaGeneralMascota
         id = (0, sucursalVeterinaria_2.crearId)(3500);
     }
     // Crear una nueva sucursal
-    var nuevaSucursal = new sucursalVeterinaria_1.Veterinaria(nombre, direccion, id, listaClientes, listaGeneralMascotas);
+    var nuevaSucursal = new sucursalVeterinaria_1.Veterinaria(nombre, direccion, id);
     // Agregar la nueva sucursal al arreglo
     arregloVeterinarias.push(nuevaSucursal);
     console.log("Sucursal agregada con éxito.");
@@ -122,20 +133,49 @@ function altaVeterinaria(arregloVeterinarias, listaClientes, listaGeneralMascota
     });
 }
 //Modificar veterinaria
-function modificarVeterinaria(arregloVete, posicion, arrClientes, arrPacientes) {
-    var nombre = rls.question("Ingrese el cambio de nombre:");
-    var direccion = rls.question("ingrese nueva dirección: ");
-    var id = arregloVete[posicion].getId();
-    var veterinariaModificada = new sucursalVeterinaria_1.Veterinaria(nombre, direccion, id, arrClientes, arrPacientes);
-    arregloVete[posicion] = veterinariaModificada;
-    console.log(arregloVete);
+function modificarVeterinaria(arregloVete) {
+    var id = rls.questionInt("Ingrese el ID de la veterinaria que desea modificar: ");
+    // Buscar el arreglo
+    var posicion = arregloVete.findIndex(function (Veterinaria) { return Veterinaria.getId() === id; });
+    if (posicion !== -1) {
+        console.log("Ingrese los nuevos datos de la sucursal:");
+        var nombre = rls.question("Ingrese el nombre modificado: ");
+        var direccion = rls.question("Ingrese la nueva direccion: ");
+        //
+        var sucModificada = new sucursalVeterinaria_1.Veterinaria(nombre, direccion, id);
+        arregloVete[posicion] = sucModificada;
+        console.log("Sucursal modificada con éxito.");
+        //me muestra lOS proveedores
+        console.log("Lista de Sucursales:");
+        arregloVete.forEach(function (Veterinaria, index) {
+            console.log("Lugar en la lista: ".concat(index + 1, ":"));
+            console.log("Nombre: ".concat(Veterinaria.getNombre()));
+            console.log("Direccion: ".concat(Veterinaria.getDireccion()));
+            console.log("ID: ".concat(Veterinaria.getId()));
+            console.log("------------------------");
+        });
+    }
+    else {
+        console.log("Sucursal no encontrado.");
+    }
 }
 //--- baja Veterinaria  por Id
-function bajaVeterinaria(arregloVete, id) {
+function bajaVeterinaria(arregloVete) {
+    var bajaId = rls.questionInt("Ingrese Id de la sucursal a dar de baja: ");
     for (var i = 0; i < arregloVete.length; i++) {
-        if (id === arregloVete[i].getId()) {
+        if (arregloVete[i].getId() == bajaId) {
+            console.log("Se dio de baja la sucursal ".concat(arregloVete[i].getNombre()));
             arregloVete.splice(i, 1);
+            break;
         }
     }
-    console.log(arregloVete);
+    //me muestra las sucursales que quedan
+    console.log("Lista de Sucursales vigentes:");
+    arregloVete.forEach(function (Veterinaria, index) {
+        console.log("Posicion: ".concat(index + 1, ":"));
+        console.log("Nombre: ".concat(Veterinaria.getNombre()));
+        console.log("Direccion: ".concat(Veterinaria.getDireccion()));
+        console.log("ID: ".concat(Veterinaria.getId()));
+        console.log("------------------------");
+    });
 }

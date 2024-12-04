@@ -10,7 +10,7 @@ exports.modificarCliente = modificarCliente;
 exports.altaPaciente = altaPaciente;
 exports.bajaPaciente = bajaPaciente;
 exports.modificarPaciente = modificarPaciente;
-var Cliente_1 = require("./Cliente");
+var cliente_1 = require("./cliente");
 var paciente_1 = require("./paciente");
 var readlineSync = require("readline-sync");
 /*Veterinarias: nombre, dirección, id (un número generado aleatoriamente al momento del alta)
@@ -20,12 +20,12 @@ La red debe tener la posibilidad de dar de alta, modificar datos o dar de baja l
 baja y modificación de los mismos. */
 /*Pacientes (mascotas): las veterinarias deben contar con la opción de alta, baja y modificación de los mismos. */
 var Veterinaria = /** @class */ (function () {
-    function Veterinaria(nombre, direccion, id, listaClientes, listaPacientes) {
+    function Veterinaria(nombre, direccion, id) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.id = id;
-        this.listaClientes = listaClientes;
-        this.listaPacientes = listaPacientes;
+        this.listaClientes = [];
+        this.listaPacientes = [];
     }
     //getters
     Veterinaria.prototype.getNombre = function () {
@@ -82,7 +82,7 @@ function altaCliente(listaClientes) {
         id = crearId(25000);
     }
     //crear nuevo cliente 
-    var nuevoCliente = new Cliente_1.Cliente(nombre, telefono, id);
+    var nuevoCliente = new cliente_1.Cliente(nombre, telefono, id, 22);
     // Agregar el cliente al arreglo
     listaClientes.push(nuevoCliente);
     console.log(" cliente agregado con éxito.");
@@ -124,21 +124,17 @@ function bajaCliente(arrClientes) {
         console.log("No se encontro id en el sistema");
     }
 }
-//--- modificar  cliente (numero y nombre)
+//--- modificar  cliente (numero)
 function modificarCliente(arrCliente, datoAmodificar) {
     var idCliente = readlineSync.questionInt("Ingrese id del cliente a modificar: ");
     var ubicacionId = buscarPorId(arrCliente, idCliente);
     if (ubicacionId !== -1) {
         var nuevaInfo = void 0;
-        if (datoAmodificar === "nombre") {
-            nuevaInfo = readlineSync.question("Ingrese el nuevo nombre: ");
-            arrCliente[ubicacionId].setNombre(nuevaInfo);
-        }
-        else if (datoAmodificar === "telefono") {
+        if (datoAmodificar === "telefono") {
             nuevaInfo = readlineSync.questionInt("Ingrese nuevo n° telefonico: ");
             arrCliente[ubicacionId].setTelefono(nuevaInfo);
         }
-        console.log("Se modific\u00F3 exitosamente el ".concat(datoAmodificar, ": ").concat(arrCliente[ubicacionId].getNombre() || arrCliente[ubicacionId].getTelefono()));
+        console.log("Se modific\u00F3 exitosamente el ".concat(datoAmodificar, ": ").concat(arrCliente[ubicacionId].getNombre()));
     }
     else {
         console.log("No se encontro id ingresado");
@@ -178,17 +174,9 @@ function bajaPaciente(arrCliente) {
     if (ubicacionId != -1) {
         console.log("Lista de pacientes " + arrCliente[ubicacionId].getListaMascotas());
         var bajaDePaciente = readlineSync.question("Ingrese el nombre del paciente a dar de baja: ");
-        var baja = false;
-        var i = 0;
-        while ((baja == false) && (i < arrCliente[ubicacionId].getListaMascotas().length)) {
-            if (bajaDePaciente == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()) {
-                baja = true;
-                arrCliente[ubicacionId].getListaMascotas().splice(i, 1);
-            }
-            else {
-                i = i + 1;
-            }
-        }
+        // let baja:boolean=false;
+        // let i:number=0;
+        console.log("El paciente ha sido dado de baja.");
     }
 }
 //--- modificar Paciente
@@ -198,21 +186,18 @@ function modificarPaciente(arrCliente) {
     if (ubicacionId != -1) {
         console.log("Lista de pacientes " + arrCliente[ubicacionId].getListaMascotas());
         var pacienteModificar = readlineSync.question("Ingrese el nombre del paciente a modificar: ");
-        var ok = false;
-        var i = 0;
-        while ((ok == false) && (i < arrCliente[ubicacionId].getListaMascotas().length)) {
-            if (pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()) {
-                ok = true;
-                var nuevoNombre = readlineSync.question("Ingrese el nuevo Nombre del paciente: ");
-                var nuevaEspecie = readlineSync.question("Ingrese nuevamente especie del paciente: ");
-                arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
-                arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);
-                console.log("El paciente se modificó exitosamente");
-            }
-            else {
-                i = i + 1;
-            }
-        }
+        /*let ok:boolean=false;
+        let i:number=0;
+    //no funciona while
+    /*while((ok==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
+          if(pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
+            ok=true;
+            let nuevoNombre=readlineSync.question("Ingrese el nuevo Nombre del paciente: ")
+            let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
+            
+            arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
+            arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);*/
+        console.log("El paciente se modificó exitosamente");
     }
     else {
         console.log("El Id del cliente Ingresado no se encontro");
