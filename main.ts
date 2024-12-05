@@ -6,49 +6,45 @@ import {altaCliente, bajaCliente, altaPaciente, bajaPaciente, modificarCliente, 
 import { Veterinaria } from "./sucursalVeterinaria";
 import * as rls from 'readline-sync'
 
-
-//clientes
-
-let listaClientes: Cliente[] = [];
-
-
 // Crear una instancia de la clase Cliente
+//cliente 1
 const cliente1 = new Cliente("Amelia", 2284526458, 5625, 3)
+const paciente = new Paciente("Lola", "gato", 5625)
+const paciente1 = new Paciente("rocky", "perro", 5625)
+cliente1.agregarPaciente(paciente);
+cliente1.agregarPaciente(paciente1);
+
+//cliente 2
 const cliente2 = new Cliente("Carolina", 2284754715, 4785, 4)
+const paciente2 = new Paciente("Tito", "pez", 4785)
+const paciente3 = new Paciente("Boby", "perro", 4785)
+const paciente4 = new Paciente("Luna", "gato", 4785)
+cliente2.agregarPaciente(paciente2);
+cliente2.agregarPaciente(paciente3);
+cliente2.agregarPaciente(paciente4);
+
+//cliente 3
+
 const cliente3 = new Cliente("Juan", 2284345689, 1510, 10)
-const cliente4 = new Cliente("Sofía", 2284123456, 1234, 5)
-const cliente5 = new Cliente("Mateo", 2289876543, 5678, 3)
+const paciente5 = new Paciente("Firulais", "perro", 1510)
+const paciente6 = new Paciente("Pelusa", "gato", 1510)
+cliente3.agregarPaciente(paciente5);
+cliente3.agregarPaciente(paciente6);
 
+//cliente 4
 
-
-
-//agrego objeto cliente al arreglo
-listaClientes = [];
+const cliente4 = new Cliente("Mateo", 2289876543, 5678, 3)
+const paciente7 = new Paciente("Rex", "perro", 5678)
+cliente4.agregarPaciente(paciente7);
 
 // Agregamos clientes a la lista
+let listaClientes: Cliente[] = [];
 listaClientes.push(cliente1);
 listaClientes.push(cliente2);
 listaClientes.push(cliente3);
 listaClientes.push(cliente4);
-listaClientes.push(cliente5);
-
-//pacientes
 
 let listaGeneralMascotas: Paciente[] = [];
-
-const paciente1 = new Paciente("Lola", "gato", 5625)
-const paciente2 = new Paciente("Tito", "pez", 4785)
-const paciente3 = new Paciente("Firulais", "perro", 1510)
-const paciente4 = new Paciente("Pelusa", "gato", 1234)
-const paciente5 = new Paciente("Rex", "perro", 5678)
-
-
-listaGeneralMascotas.push(paciente1);
-listaGeneralMascotas.push(paciente2);
-listaGeneralMascotas.push(paciente3);
-listaGeneralMascotas.push(paciente4);
-listaGeneralMascotas.push(paciente5);
-
 
 
 //sucursales vete
@@ -56,8 +52,6 @@ listaGeneralMascotas.push(paciente5);
 let arregloVeterinarias: Veterinaria[]=[];
 
 const sucursal1= new Veterinaria("Patitas", "Belgrano 3454", 1112);
-
-
 const sucursal2= new Veterinaria ("Full Mascotas", "Alsina 2100", 1113 );
 
 // Agregar objetos Veterinaria al arreglo
@@ -84,6 +78,7 @@ listaProveedores.push(proveedor3);
 
 while (true){
 //Menú del sistema
+
 console.log("Bienvenido/a a la red de veterinarias 'Los rescataditos'¿Qué desea hacer?: ");
 console.log("----------------------------------------------------------------")
 console.log("1. Dar de alta una nueva sucursal");
@@ -125,7 +120,7 @@ switch (opcion) {
       altaCliente(listaClientes);
       break;
     case 3:
-      altaPaciente(listaClientes, listaGeneralMascotas);
+      altaPaciente(listaClientes,listaGeneralMascotas);
       break;
     case 4:
       altaProveedor(listaProveedores);

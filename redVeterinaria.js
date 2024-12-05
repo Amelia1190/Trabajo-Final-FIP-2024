@@ -22,19 +22,20 @@ IMPORTANTE: los id deben ser únicos, por lo tanto al generarse, antes de guarda
 Si ya existe se debe volver a generar.*/
 //Clase RedVeterinarias
 var RedVeterinaria = /** @class */ (function () {
-    //constructor
+    //constructor Este es el constructor de la clase RedVeterinaria. 
+    //Se llama automáticamente cuando se crea una nueva instancia de la clase.
     function RedVeterinaria() {
-        this.veterinarias = [];
+        this.veterinarias = []; //Esta línea inicializa la propiedad veterinarias como un arreglo vacío.
         this.proveedores = [];
     }
-    //getters
+    //getters //devuelven los arreglos de objetos
     RedVeterinaria.prototype.getVeterinarias = function () {
         return this.veterinarias;
     };
     RedVeterinaria.prototype.getProveedores = function () {
         return this.proveedores;
     };
-    //setters
+    //setters para que se puedan modificar
     RedVeterinaria.prototype.setVeterinarias = function (veterinarias) {
         this.veterinarias = veterinarias;
     };
@@ -49,15 +50,18 @@ exports.RedVeterinaria = RedVeterinaria;
 function altaProveedor(arrProveedor) {
     var nombre = rls.question("Ingrese Apellido y Nombre del proveedor: ");
     var telefono = rls.questionInt("Ingrese el n° de telefono del proveedor: ");
+    // El bucle while se repetirá hasta que se genere un ID que no exista en el arreglo de proveedores. 
     var id = (0, sucursalVeterinaria_2.crearId)(3500);
     while ((0, sucursalVeterinaria_2.existeId)(arrProveedor, id) == true) {
         id = (0, sucursalVeterinaria_2.crearId)(3500);
     }
+    //crea una instancia de  la clase provedor
     var nProveedor = new proveedor_1.Proveedor(nombre, telefono, id);
     //agrego al arreglo de proveedores
     arrProveedor.push(nProveedor);
     console.log(" proveedor agregado con éxito.");
-    //me muestra lOS proveedores
+    //me muestra lOS proveedores  Esta línea utiliza el método forEach para recorrer el arreglo arrProveedor 
+    //y ejecutar una función para cada elemento del arreglo.
     console.log("Lista de Proveedores:");
     arrProveedor.forEach(function (proveedor, index) {
         console.log("Lugar en la lista: ".concat(index + 1, ":"));
@@ -72,6 +76,12 @@ function modificarProveedor(arregloProveedores) {
     var idProveedor = rls.questionInt("Ingrese el ID del proveedor que desea modificar: ");
     // Buscar el proveedor en el arreglo
     var posicion = arregloProveedores.findIndex(function (proveedor) { return proveedor.getId() === idProveedor; });
+    //if (posicion !== -1): Esta es la condición del if. La variable posicion se supone que contiene el índice del proveedor a modificar en el arreglo de proveedores. 
+    //Si la posición es diferente de -1, significa que el proveedor se encontró en el arreglo.
+    //Si la condición es verdadera, el código dentro del if se ejecutará. 
+    //En este caso, el código pide al usuario que ingrese los nuevos datos del proveedor, 
+    //crea un nuevo objeto Proveedor con los datos ingresados y
+    // reemplaza el proveedor antiguo con el nuevo en el arreglo de proveedores.
     if (posicion !== -1) {
         console.log("Ingrese los nuevos datos del proveedor:");
         var nombre = rls.question("Ingrese el nombre modificado: ");
@@ -97,6 +107,7 @@ function modificarProveedor(arregloProveedores) {
 //--- baja Proveedor 
 function bajaProveedor(proveedor) {
     var bajaId = rls.questionInt("Ingrese Id del Proveedor a dar de baja: ");
+    //recorre el arreglo
     for (var i = 0; i < proveedor.length; i++) {
         if (proveedor[i].getId() == bajaId) {
             console.log("Se dio de baja el proveedor ".concat(proveedor[i].getNombre()));

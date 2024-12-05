@@ -47,6 +47,7 @@ var Veterinaria = /** @class */ (function () {
     Veterinaria.prototype.setId = function (nuevoId) {
         this.id = nuevoId;
     };
+    //modificar lista 
     Veterinaria.prototype.setListaClientes = function (listaClientes) {
         this.listaClientes = listaClientes;
     };
@@ -120,7 +121,13 @@ function bajaCliente(arrClientes) {
         arrClientes.splice(ubicacion, 1);
         console.log("El cliente ingresado se dio de baja");
         console.log("Lista de clientes vigentes:");
-        console.table(arrClientes);
+        console.table(arrClientes.map(function (cliente) { return ({
+            nombre: cliente.getNombre(),
+            telefono: cliente.getTelefono(),
+            id: cliente.getId(),
+            numDeVisitas: cliente.getnumDeVisitas(),
+            listaMascotas: cliente.getListaMascotas().map(function (paciente) { return paciente.getNombre(); })
+        }); }));
     }
     else {
         console.log("No se encontro id en el sistema");
@@ -170,15 +177,50 @@ function altaPaciente(arrCliente, arrPacientes) {
     });
 }
 //--- baja paciente
+/*
+export function bajaPaciente(arrCliente:Cliente[]):void {
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para dar de baja el paciente: ");
+  let ubicacionId=buscarPorId(arrCliente,idCliente);
+
+  
+  if(ubicacionId!=-1){
+    console.log("Lista de pacientes "+ arrCliente[ubicacionId].getListaMascotas())
+    let bajaDePaciente=readlineSync.question("Ingrese el nombre del paciente a dar de baja: ")
+    let listaMascotas = arrCliente[ubicacionId].getListaMascotas();
+    let indicePaciente = listaMascotas.findIndex(paciente => paciente.getNombre() == bajaDePaciente);
+    if (indicePaciente !== -1) {
+      listaMascotas.splice(indicePaciente, 1);
+      console.log("El paciente ha sido dado de baja.");
+    } else {
+      console.log("No se encontró el paciente.");
+    }
+  }
+}*/
 function bajaPaciente(arrCliente) {
     var idCliente = readlineSync.questionInt("Ingrese Id del Cliente, para dar de baja el paciente: ");
     var ubicacionId = buscarPorId(arrCliente, idCliente);
-    if (ubicacionId != -1) {
-        console.log("Lista de pacientes " + arrCliente[ubicacionId].getListaMascotas());
-        var bajaDePaciente = readlineSync.question("Ingrese el nombre del paciente a dar de baja: ");
-        // let baja:boolean=false;
-        // let i:number=0;
-        console.log("El paciente ha sido dado de baja.");
+    if (ubicacionId !== -1) {
+        var listaMascotas = arrCliente[ubicacionId].getListaMascotas();
+        if (listaMascotas.length > 0) {
+            console.log("Lista de pacientes:");
+            listaMascotas.forEach(function (paciente, index) {
+                console.log("".concat(index + 1, ". Nombre: ").concat(paciente.getNombre(), ", Especie: ").concat(paciente.getEspecie()));
+            });
+            var bajaDePaciente_1 = readlineSync.question("Ingrese el nombre del paciente a dar de baja: ");
+            var indicePaciente = listaMascotas.findIndex(function (paciente) { return paciente.getNombre() == bajaDePaciente_1; });
+            if (indicePaciente !== -1) {
+                listaMascotas.splice(indicePaciente, 1);
+                console.log("El paciente ha sido dado de baja.");
+                console.log("pacientes que quedan registrados");
+                console.table(listaMascotas);
+            }
+            else {
+                console.log("No se encontró el paciente.");
+            }
+        }
+        else {
+            console.log("No hay pacientes registrados para este cliente.");
+        }
     }
 }
 //--- modificar Paciente

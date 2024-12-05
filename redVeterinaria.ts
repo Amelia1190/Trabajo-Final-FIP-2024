@@ -18,17 +18,19 @@ Si ya existe se debe volver a generar.*/
 
   export  class RedVeterinaria{
 
-    private veterinarias: Veterinaria [];
+    private veterinarias: Veterinaria [];// Esta es una propiedad privada que almacena un arreglo de objetos de la clase Veterinaria. 
+    //Esta propiedad representa la lista de veterinarias que forman parte de la red.
     private proveedores:  Proveedor [];
 
 
-//constructor
+//constructor Este es el constructor de la clase RedVeterinaria. 
+//Se llama automáticamente cuando se crea una nueva instancia de la clase.
     public constructor(){
-        this.veterinarias =[];
+        this.veterinarias =[];//Esta línea inicializa la propiedad veterinarias como un arreglo vacío.
         this.proveedores = [];
     }
 
-    //getters
+    //getters //devuelven los arreglos de objetos
     public getVeterinarias() :Veterinaria []{
         return this.veterinarias;
     }
@@ -38,7 +40,7 @@ Si ya existe se debe volver a generar.*/
     }
 
   
-    //setters
+    //setters para que se puedan modificar
     public setVeterinarias(veterinarias: Veterinaria[]) : void {
         this.veterinarias = veterinarias;
 
@@ -58,19 +60,20 @@ Si ya existe se debe volver a generar.*/
 export function altaProveedor(arrProveedor: Proveedor[]){
     let nombre: string = rls.question("Ingrese Apellido y Nombre del proveedor: ");
     let telefono: number = rls.questionInt("Ingrese el n° de telefono del proveedor: ");
-      
+     // El bucle while se repetirá hasta que se genere un ID que no exista en el arreglo de proveedores. 
     let id: number = crearId(3500);
     while(existeId(arrProveedor,id)==true){
       id=crearId(3500);
     }
-  
+  //crea una instancia de  la clase provedor
     let nProveedor: Proveedor = new Proveedor(nombre, telefono, id);
 
     //agrego al arreglo de proveedores
     arrProveedor.push(nProveedor);
       console.log(" proveedor agregado con éxito.");
 
-  //me muestra lOS proveedores
+  //me muestra lOS proveedores  Esta línea utiliza el método forEach para recorrer el arreglo arrProveedor 
+  //y ejecutar una función para cada elemento del arreglo.
   console.log("Lista de Proveedores:");
   arrProveedor.forEach((proveedor, index) => {
     console.log(`Lugar en la lista: ${index + 1}:`);
@@ -89,7 +92,12 @@ export function modificarProveedor(arregloProveedores: Proveedor[]) {
 
   // Buscar el proveedor en el arreglo
   const posicion = arregloProveedores.findIndex((proveedor) => proveedor.getId() === idProveedor);
-
+//if (posicion !== -1): Esta es la condición del if. La variable posicion se supone que contiene el índice del proveedor a modificar en el arreglo de proveedores. 
+//Si la posición es diferente de -1, significa que el proveedor se encontró en el arreglo.
+//Si la condición es verdadera, el código dentro del if se ejecutará. 
+//En este caso, el código pide al usuario que ingrese los nuevos datos del proveedor, 
+//crea un nuevo objeto Proveedor con los datos ingresados y
+// reemplaza el proveedor antiguo con el nuevo en el arreglo de proveedores.
   if (posicion !== -1) {
     console.log("Ingrese los nuevos datos del proveedor:");
 
@@ -122,6 +130,7 @@ export function modificarProveedor(arregloProveedores: Proveedor[]) {
 
   export function bajaProveedor(proveedor: Proveedor[]){ 
     let bajaId:number=rls.questionInt("Ingrese Id del Proveedor a dar de baja: ")
+    //recorre el arreglo
     for (let i= 0; i< proveedor.length; i++){
       if (proveedor[i].getId() ==bajaId){
         console.log(`Se dio de baja el proveedor ${proveedor[i].getNombre()}`);

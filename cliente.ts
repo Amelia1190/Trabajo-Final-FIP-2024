@@ -8,6 +8,8 @@ baja y modificación de los mismos. */
 
 // Clase Cliente
  export class Cliente {
+   
+     
     private nombre:string;
     private telefono:number;
     private id:number;
@@ -41,6 +43,10 @@ baja y modificación de los mismos. */
     public getnumDeVisitas():number{
         return this.numDeVisitas
     }
+    public agregarPaciente(paciente: Paciente): void {
+        this.listaMascotas.push(paciente);
+      }
+    
     public getListaMascotas():Paciente[]{
         return this.listaMascotas
     }

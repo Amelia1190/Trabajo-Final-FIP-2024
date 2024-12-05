@@ -28,6 +28,9 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.getnumDeVisitas = function () {
         return this.numDeVisitas;
     };
+    Cliente.prototype.agregarPaciente = function (paciente) {
+        this.listaMascotas.push(paciente);
+    };
     Cliente.prototype.getListaMascotas = function () {
         return this.listaMascotas;
     };

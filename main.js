@@ -7,34 +7,38 @@ var redVeterinaria_1 = require("./redVeterinaria");
 var sucursalVeterinaria_1 = require("./sucursalVeterinaria");
 var sucursalVeterinaria_2 = require("./sucursalVeterinaria");
 var rls = require("readline-sync");
-//clientes
-var listaClientes = [];
 // Crear una instancia de la clase Cliente
+//cliente 1
 var cliente1 = new cliente_1.Cliente("Amelia", 2284526458, 5625, 3);
+var paciente = new paciente_1.Paciente("Lola", "gato", 5625);
+var paciente1 = new paciente_1.Paciente("rocky", "perro", 5625);
+cliente1.agregarPaciente(paciente);
+cliente1.agregarPaciente(paciente1);
+//cliente 2
 var cliente2 = new cliente_1.Cliente("Carolina", 2284754715, 4785, 4);
+var paciente2 = new paciente_1.Paciente("Tito", "pez", 4785);
+var paciente3 = new paciente_1.Paciente("Boby", "perro", 4785);
+var paciente4 = new paciente_1.Paciente("Luna", "gato", 4785);
+cliente2.agregarPaciente(paciente2);
+cliente2.agregarPaciente(paciente3);
+cliente2.agregarPaciente(paciente4);
+//cliente 3
 var cliente3 = new cliente_1.Cliente("Juan", 2284345689, 1510, 10);
-var cliente4 = new cliente_1.Cliente("Sofía", 2284123456, 1234, 5);
-var cliente5 = new cliente_1.Cliente("Mateo", 2289876543, 5678, 3);
-//agrego objeto cliente al arreglo
-listaClientes = [];
+var paciente5 = new paciente_1.Paciente("Firulais", "perro", 1510);
+var paciente6 = new paciente_1.Paciente("Pelusa", "gato", 1510);
+cliente3.agregarPaciente(paciente5);
+cliente3.agregarPaciente(paciente6);
+//cliente 4
+var cliente4 = new cliente_1.Cliente("Mateo", 2289876543, 5678, 3);
+var paciente7 = new paciente_1.Paciente("Rex", "perro", 5678);
+cliente4.agregarPaciente(paciente7);
 // Agregamos clientes a la lista
+var listaClientes = [];
 listaClientes.push(cliente1);
 listaClientes.push(cliente2);
 listaClientes.push(cliente3);
 listaClientes.push(cliente4);
-listaClientes.push(cliente5);
-//pacientes
 var listaGeneralMascotas = [];
-var paciente1 = new paciente_1.Paciente("Lola", "gato", 5625);
-var paciente2 = new paciente_1.Paciente("Tito", "pez", 4785);
-var paciente3 = new paciente_1.Paciente("Firulais", "perro", 1510);
-var paciente4 = new paciente_1.Paciente("Pelusa", "gato", 1234);
-var paciente5 = new paciente_1.Paciente("Rex", "perro", 5678);
-listaGeneralMascotas.push(paciente1);
-listaGeneralMascotas.push(paciente2);
-listaGeneralMascotas.push(paciente3);
-listaGeneralMascotas.push(paciente4);
-listaGeneralMascotas.push(paciente5);
 //sucursales vete
 var arregloVeterinarias = [];
 var sucursal1 = new sucursalVeterinaria_2.Veterinaria("Patitas", "Belgrano 3454", 1112);
