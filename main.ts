@@ -44,8 +44,16 @@ listaClientes.push(cliente2);
 listaClientes.push(cliente3);
 listaClientes.push(cliente4);
 
+//Agregamos pacientes a la lista
 let listaGeneralMascotas: Paciente[] = [];
-
+listaGeneralMascotas.push(paciente);
+listaGeneralMascotas.push(paciente1);
+listaGeneralMascotas.push(paciente2);
+listaGeneralMascotas.push(paciente3);
+listaGeneralMascotas.push(paciente4);
+listaGeneralMascotas.push(paciente5);
+listaGeneralMascotas.push(paciente6);
+listaGeneralMascotas.push(paciente7);
 
 //sucursales vete
 
@@ -120,7 +128,7 @@ switch (opcion) {
       altaCliente(listaClientes);
       break;
     case 3:
-      altaPaciente(listaClientes,listaGeneralMascotas);
+      listaGeneralMascotas = altaPaciente(listaClientes, listaGeneralMascotas);
       break;
     case 4:
       altaProveedor(listaProveedores);
